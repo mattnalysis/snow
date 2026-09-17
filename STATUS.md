@@ -1,6 +1,6 @@
 # Status — as of 2026-09-17
 
-> **Invoice material was stripped from the public case site** this session — see "Redaction" below. `site/index.html` in this repo is the redacted copy.
+> **Invoice material was stripped from the public case site and the live artifact republished** (Version 24) — see "Redaction — public case site" below.
 
 Read `PRD.md` first for why this exists and the rules that must not be re-litigated (iframe/link constraints, classification rule, redaction policy). This file is "what's true right now."
 
@@ -8,10 +8,12 @@ Read `PRD.md` first for why this exists and the rules that must not be re-litiga
 
 | What | URL | Version at last publish |
 |---|---|---|
-| Public case site | https://claude.ai/artifact/JbT43rhsCqEtpDkoF3E1WF | 22 |
+| Public case site | https://claude.ai/artifact/JbT43rhsCqEtpDkoF3E1WF | 24 |
 | Email index QA viewer (redacted, public) | https://claude.ai/artifact/2LuiMSfwGFiSKaa414wMQb | 7 |
 
 Both are published from files now committed in this repo (`site/index.html`, `email-index/index.public.html`), so they can be re-published in one `Artifact` publish call with `url:` set to the link above — no need to rebuild from scratch.
+
+**Live had drifted from the repo before Version 24.** Version 22 was *not* this repo's `site/index.html`: it was an earlier build that had already dropped `EX-170` and the two invoice attachment records from its data (while still hosting the invoice PDFs), and that never got the "Retainer replenishment demanded" record. Publishing the redacted repo copy as Version 24 made live match the repo again, which also put `EX-170` (the receiver's fee application, whose PDF was hosted all along) and that retainer record on the public site. Worth re-checking `list_files` and a `read` before assuming live matches the repo — it did not this time.
 
 ## Repo layout
 
@@ -72,6 +74,7 @@ User asked to remove the invoice email and invoice details from the case site. D
 - Billing detail quoted inside messages that stay was scrubbed in place: the `$595.29` invoice balance, the check-mailing/credit-card payment block, the LawPay link and the client/matter numbers, replaced with a visible "[Payment instructions and billing account details removed from the public archive.]" marker. The retainer facts the case narrative depends on (the $800 demand, its Sept. 25 deadline, that the invoice depleted the retainer) are kept.
 - UI: the "Invoices" filter chip, the `invoice` kind label, the `invoice` topic keyword and the timeline's cross-reference to `EX-222` are all gone, so nothing renders empty.
 - Checked by rendering the page headless (Playwright/Chromium): no JS errors, 83 records, "74 of 74 documents", no empty "Related documents" blocks.
+- **Published as Version 24**, and the two invoice PDFs (`docs/EX-222 4044933.pdf`, `docs/EX-232 Inv. 4058433.pdf`) were removed from the artifact's hosted files — they had stayed reachable by direct URL even after an earlier build stopped linking them. The artifact hosts 54 files now. Re-downloaded the published `index.html` afterwards and grepped it: none of the invoice ids, invoice numbers, the balance, the payment link or the account numbers survive in it.
 
 **Still outstanding on the other public artifact:** `email-index/index.public.html` keeps the Sept. 2026 retainer thread (correctly — `retainer` was never the redaction target), and that thread's body text still contains the `$595.29` balance, the LawPay payment link and client #3472 / matter #222027. If those should go too, it is the same scrub applied to that file's `emaildata`, plus the `595.29` entry in `moneytags`.
 
