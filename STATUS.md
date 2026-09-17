@@ -47,6 +47,7 @@ Integrity verified: all 10 schema fields present on every record, no personal re
 ## Document hosting
 
 - **106 files**, staged in `site/docs/` and hosted by both artifacts (was 108 — the two invoice PDFs were deleted in the case-site redaction below).
+- **Names differ between here and the artifacts.** `site/docs/` uses short ids (`EX-257.pdf`); the artifacts host, and both pages' data point at, the long descriptive names (`docs/EX-257 Entry granting Motion for Leave to Withdraw as Counsel.pdf`). Republishing the whole `docs/` directory from this repo would rename every hosted file and break every document link — publish `index.html` alone unless you deliberately rebuild the file map. `scripts/stage_local_site.py` reconstructs the published names for local testing.
 - 53 are the original case exhibits (`EX-006.pdf` … `EX-258.pdf`), matched against the `data/emails` records by (threadId, filename) — the mapping lives inline in both HTML files as `attmap` (email-index) and `libdata` (site).
 - 53 (`R-001` … `R-053`) were recovered this session via the RAW-MIME technique below. Three are `.docx` sources the platform won't serve directly — `R-001/002/003.html` — rendered to readable HTML by `scripts/docx2html.py` because **LibreOffice is broken in this container** (fails `--convert-to pdf` even on a minimal valid docx with a simple filename; don't waste time on it again, use the script).
 - **The public email-index viewer hosts only 76 of these** — 33 invoice PDFs were deliberately unpublished as part of its redaction (see below). The case site hosts 53.
@@ -62,6 +63,15 @@ No Gmail tool exposes attachment bytes directly. Working method: `mcp__Gmail__ge
   - Steve Mullins Vol II 11-29-23 (PDF) — message ~20.3 MB
   - These need the user's own manual download from Gmail, and would need to live in Google Drive with a link from the archive (not hosted on the Artifact) since they're over the size cap even once downloaded.
 - **Unresolved, worth another look:** 5 messages, 7–15.8 MB, holding ~13 legal PDFs/DOCXs that are individually probably under the hosting cap but sit above the RAW-MIME transport ceiling — currently unreachable by any method tried. Not attempted: the `download_exhibits.py` script sitting in the user's Google Drive folder "Mullins Exhibit Downloader" (created by the user, not this session) — never inspected or run. Worth asking the user about before the next attempt.
+
+## Attachments section and the file hand-off (case site)
+
+Reported: "I can only open the first page of the pdf." Cause is the platform constraint in `PRD.md` — a document link navigated the page itself, and a PDF inside the artifact's sandboxed frame renders as one static, unscrollable page. Fixed by never navigating to the file:
+
+- New **Attachments** section (`#attachments`, linked from the nav): the 53 hosted files as a plain list — filename, kind, date, size, a name filter, and nothing else.
+- A tap on any document anywhere on the page (Attachments, Document Library, the timeline's "Related documents") runs one hand-off: fetch the file → `navigator.share({files})` → system share sheet. Falls through to sharing the URL, then `window.open`, then revealing the file's full address with an explanation, if the sandbox refuses a step. The links stay real `<a href>`s so long-press still gives iPadOS's own Download / Share menu.
+- `scripts/test_handoff.js` drives all of that with `navigator.share` stubbed three ways and asserts the page never navigates to the PDF. Run it against a local copy staged by `scripts/stage_local_site.py` (needed because `site/docs/` uses short names while the page asks for the published long ones — see Document hosting below).
+- Corrected stale copy while in there: the library said "55 of 76 files" (now 53 of 74) and "15 of those by OCR" (10, computed from the page's own data), and two paragraphs still described an in-page viewer that no longer exists.
 
 ## Redaction — public case site (`site/index.html`)
 
