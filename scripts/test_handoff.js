@@ -4,11 +4,12 @@
  * The case site runs inside a sandboxed frame that will not paginate a PDF and
  * will not let the page download one, so a tap must hand the file to the device
  * instead of opening it here. This drives that hand-off with navigator.share
- * stubbed three ways — shares files, refuses files, refuses everything — and
- * asserts the page never navigates itself to the PDF.
+ * stubbed four ways — shares files, refuses files, refuses everything, and
+ * Safari's case where the tap goes stale while the file downloads — and asserts
+ * the page never navigates itself to the PDF.
  *
  *   python3 scripts/stage_local_site.py /tmp/sitetest
- *   npx http-server -p 8199 -s /tmp/sitetest
+ *   npx http-server -p 8199 -s -c-1 /tmp/sitetest   # -c-1: no caching, or edits won't show
  *   node scripts/test_handoff.js [http://127.0.0.1:8199/index.html]
  */
 let chromium;
@@ -80,8 +81,10 @@ const firstShare = '#atRows li.arow:first-child button.sharebtn';
 
   // 3. everything blocked, as the artifact sandbox does: expect the address revealed, no navigation
   {
+    // how a permissions-policy block actually presents: canShare says no,
+    // and share() rejects rather than throwing synchronously
     const { page } = await newPage(b, () => {
-      navigator.canShare = () => { throw new DOMException('blocked', 'NotAllowedError'); };
+      navigator.canShare = () => false;
       navigator.share = async () => { throw new DOMException('blocked', 'NotAllowedError'); };
       window.open = () => null;
     });
@@ -119,6 +122,55 @@ const firstShare = '#atRows li.arow:first-child button.sharebtn';
     await page.waitForTimeout(1200);
     const r = await page.evaluate(() => ({ shared: window.__shared, url: location.href }));
     check('file name tap: shared instead of navigating', r.shared.length === 1 && r.url === before, JSON.stringify(r.shared));
+    await page.context().close();
+  }
+
+  // 3b. a browser that throws from canShare rather than returning false — same outcome
+  {
+    const { page } = await newPage(b, () => {
+      navigator.canShare = () => { throw new DOMException('blocked', 'NotAllowedError'); };
+      navigator.share = async () => { throw new DOMException('blocked', 'NotAllowedError'); };
+      window.open = () => null;
+    });
+    const before = page.url();
+    await page.click(firstShare);
+    await page.waitForTimeout(1200);
+    const r = await page.evaluate(() => {
+      const row = document.querySelector('#atRows li.arow');
+      return { revealed: row.classList.contains('showurl'), url: location.href };
+    });
+    check('canShare throws: still ends at the address, not a dead end', r.revealed && r.url === before);
+    await page.context().close();
+  }
+
+  // 4b. Safari: the tap goes stale while the file downloads, so the first share is
+  //     refused and the second — with the file already held — must succeed
+  {
+    const { page } = await newPage(b, () => {
+      window.__shared = [];
+      window.__calls = 0;
+      navigator.canShare = d => !!(d && d.files && d.files.length);
+      navigator.share = async d => {
+        window.__calls++;
+        if (window.__calls === 1) throw new DOMException('stale gesture', 'NotAllowedError');
+        window.__shared.push(d.files[0].name);
+      };
+      window.open = () => null;
+    });
+    const before = page.url();
+    await page.click(firstShare);
+    await page.waitForTimeout(1200);
+    const mid = await page.evaluate(() => ({
+      label: document.querySelector('#atRows li.arow button.sharebtn').textContent,
+      shared: window.__shared.length,
+      revealed: document.querySelector('#atRows li.arow').classList.contains('showurl'),
+      url: location.href,
+    }));
+    check('stale gesture: asks for a second tap instead of giving up', /tap again/i.test(mid.label) && mid.shared === 0 && !mid.revealed && mid.url === before, mid.label);
+    await page.click(firstShare);
+    await page.waitForTimeout(600);
+    const after = await page.evaluate(() => ({ shared: window.__shared, url: location.href }));
+    check('stale gesture: second tap shares the held file, no refetch', after.shared.length === 1 && after.url === before, JSON.stringify(after.shared));
     await page.context().close();
   }
 

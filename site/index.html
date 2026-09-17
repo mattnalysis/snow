@@ -908,26 +908,57 @@ function revealAddress(row, msg){
   }
   note.textContent = msg;
 }
+// Safari only honours navigator.share while the tap that triggered it is still
+// "fresh", and fetching the file spends that. So the fetched file is kept, and a
+// second tap shares it with nothing awaited in between. Browsers that don't mind
+// the wait never see the second tap.
+const FETCHED = new Map();
+function shareFile(file, name){
+  // a browser that refuses file sharing outright answers here, and gets the
+  // fallbacks below; only a share the browser accepted can reject later
+  try{
+    if(!(navigator.canShare && navigator.share && window.File)) return null;
+    if(!navigator.canShare({files:[file]})) return null;
+  }catch(err){ return null; }
+  try{ return navigator.share({files:[file], title:name}); }
+  catch(err){ return Promise.reject(err); }
+}
 async function handOff(url, name, btn, row){
-  const label = btn ? btn.textContent : null;
+  const label = (btn && btn.dataset.label) || (btn ? btn.textContent : null);
+  if(btn && !btn.dataset.label) btn.dataset.label = btn.textContent;
   const say = function(t){ if(btn) btn.textContent = t; };
   const restore = function(){ if(btn && label) setTimeout(function(){ btn.textContent = label; }, 1800); };
   // 1. the file itself — what actually produces Save to Files / Open in app
-  try{
-    if(navigator.canShare && window.File && window.fetch){
-      say("Preparing…");
-      const res = await fetch(url);
-      if(res.ok){
-        const blob = await res.blob();
-        const file = new File([blob], name, {type: blob.type || "application/octet-stream"});
-        if(navigator.canShare({files:[file]})){
-          await navigator.share({files:[file], title:name});
-          say("Sent ✓"); restore(); return true;
+  const held = FETCHED.get(url);
+  if(held){
+    const sharing = shareFile(held, name);
+    if(sharing){
+      try{ await sharing; say("Sent ✓"); restore(); return true; }
+      catch(err){ if(err && err.name === "AbortError"){ say(label||"Share / Save"); return true; } }
+    }
+  } else {
+    try{
+      if(navigator.canShare && window.File && window.fetch){
+        say("Preparing…");
+        const res = await fetch(url);
+        if(res.ok){
+          const blob = await res.blob();
+          const file = new File([blob], name, {type: blob.type || "application/octet-stream"});
+          FETCHED.set(url, file);
+          const sharing = shareFile(file, name);
+          if(sharing){
+            try{ await sharing; say("Sent ✓"); restore(); return true; }
+            catch(err){
+              if(err && err.name === "AbortError"){ say(label||"Share / Save"); return true; }
+              // the tap went stale while the file downloaded — it's held now, so ask for one more
+              if(err && err.name === "NotAllowedError"){ say("Ready — tap again to save"); return true; }
+            }
+          }
         }
       }
+    }catch(err){
+      if(err && err.name === "AbortError"){ say(label||"Share / Save"); return true; }
     }
-  }catch(err){
-    if(err && err.name === "AbortError"){ say(label||"Share / Save"); return true; }
   }
   // 2. the link, if the file couldn't be shared
   try{
