@@ -20,6 +20,7 @@ Matt Snow (matthew.m.snow@gmail.com) is a defendant homeowner in *State of Ohio 
 - Real hosted files, not just links to Gmail threads. Every exhibit gets a stable `EX-###` id.
 - Every document/email needs a plain-English summary — a reader shouldn't have to open a filing to know what it says.
 - No personal correspondence, ever, in the public site. A message is "personal" if it wasn't broadcast to the litigation group (see Classification rule, below).
+- **No invoices or billing detail in the public site** (asked for after the email-index redaction, same boundary): counsel's invoice emails and invoice PDFs are out entirely, as is any invoice amount, billing account/matter number or payment link quoted inside a message that stays. What stays is the case narrative about money — the retainer demands and their deadlines, the receiver's fee application (a court filing, not a bill to the owners), and assessment discussion. Enforced by `scripts/strip_invoices_site.py`, checked by `scripts/verify_site_invoices.py`.
 - Timeline includes forward-looking deadlines/gates (status conferences, the Dec 31, 2026 ARPA spend-down deadline, open trial issues), not just past events, visually distinguished (amber "Upcoming/Deadline" markers).
 - People Involved section with bios and a live link into filtered search.
 - Filtering: dropdowns for content type (Email/Filing subtype/Report/News), Person, Topic — not pill buttons.
@@ -44,6 +45,8 @@ Matt Snow (matthew.m.snow@gmail.com) is a defendant homeowner in *State of Ohio 
 
 ### Redaction policy (as of the current live public viewer)
 The user asked to remove **personal messages and invoice/receipt-related messages** from the public copy. Both are gone from `email-index/index.public.html`'s embedded data and from its hosted `files` (33 now-orphaned invoice PDFs were unpublished, not just unlinked). The **complete, unredacted dataset remains in `data/emails/*.json`** and in `email-index/index.full.html` (local reference copy, never published). Any future redaction pass should follow the same pattern: strip from the embedded JSON, unpublish orphaned hosted files, verify with `scripts/verify_redaction.py`.
+
+The same invoice boundary was later applied to the public case site (`site/index.html`) — see Product 1 above — and taken one step further there: the billing *details* quoted inside messages that stay (invoice balance, client/matter numbers, LawPay payment link) were scrubbed too, not just the invoice records. `email-index/index.public.html` has not had that second step applied; it still carries those details inside the Sept. 2026 retainer thread, which the original pass kept because `retainer` is not `invoice`.
 
 ### Known limitation: attachment bytes
 No Gmail MCP tool exposes attachment content directly. The workaround — `get_message` with `messageFormat: "RAW"`, which returns full MIME with attachments inline as base64 — works but has a **hard transport ceiling around 7 MB**; larger messages drop the connection outright ("Gmail session expired"), regardless of backoff/retry. See STATUS.md for exactly what is and isn't recovered as of the last session.

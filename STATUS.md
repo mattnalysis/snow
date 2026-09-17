@@ -1,5 +1,7 @@
 # Status — as of 2026-09-17
 
+> **Invoice material was stripped from the public case site** this session — see "Redaction" below. `site/index.html` in this repo is the redacted copy.
+
 Read `PRD.md` first for why this exists and the rules that must not be re-litigated (iframe/link constraints, classification rule, redaction policy). This file is "what's true right now."
 
 ## Live URLs
@@ -16,7 +18,7 @@ Both are published from files now committed in this repo (`site/index.html`, `em
 ```
 data/emails/*.json          complete, unredacted email database — 349 messages, source of truth
 site/index.html             public case site source (published as Version 22 above)
-site/docs/                  108 hosted files shared by both artifacts (55 EX-* originals + 53 R-* recovered)
+site/docs/                  106 hosted files shared by both artifacts (53 EX-* originals + 53 R-* recovered)
 email-index/index.public.html   redacted viewer, currently published (254 messages, 76 files)
 email-index/index.full.html     complete viewer, NEVER published — local reference / audit copy only
 email-index/recovered-manifest.json   provenance for the 61 recovered attachments (messageId → saved file)
@@ -42,10 +44,10 @@ Integrity verified: all 10 schema fields present on every record, no personal re
 
 ## Document hosting
 
-- **108 files, 39 MB**, staged in `site/docs/` and hosted by both artifacts.
-- 55 are the original case exhibits (`EX-006.pdf` … `EX-258.pdf`), matched against the `data/emails` records by (threadId, filename) — the mapping lives inline in both HTML files as `attmap` (email-index) and `libdata` (site).
+- **106 files**, staged in `site/docs/` and hosted by both artifacts (was 108 — the two invoice PDFs were deleted in the case-site redaction below).
+- 53 are the original case exhibits (`EX-006.pdf` … `EX-258.pdf`), matched against the `data/emails` records by (threadId, filename) — the mapping lives inline in both HTML files as `attmap` (email-index) and `libdata` (site).
 - 53 (`R-001` … `R-053`) were recovered this session via the RAW-MIME technique below. Three are `.docx` sources the platform won't serve directly — `R-001/002/003.html` — rendered to readable HTML by `scripts/docx2html.py` because **LibreOffice is broken in this container** (fails `--convert-to pdf` even on a minimal valid docx with a simple filename; don't waste time on it again, use the script).
-- **The public email-index viewer hosts only 76 of the 108** — 33 invoice PDFs were deliberately unpublished as part of the redaction (see below). The full 108 remain in `site/docs/` here and are what the public *case site* still uses.
+- **The public email-index viewer hosts only 76 of these** — 33 invoice PDFs were deliberately unpublished as part of its redaction (see below). The case site hosts 53.
 
 ### Attachment recovery — how, and where it stopped
 No Gmail tool exposes attachment bytes directly. Working method: `mcp__Gmail__get_message` with `messageFormat: "RAW"` returns full MIME; attachments are inline base64. Decode (`base64.urlsafe_b64decode`, padded) and parse with `email.message_from_bytes(...)`. Scripted in `scripts/extract.py`.
@@ -58,6 +60,20 @@ No Gmail tool exposes attachment bytes directly. Working method: `mcp__Gmail__ge
   - Steve Mullins Vol II 11-29-23 (PDF) — message ~20.3 MB
   - These need the user's own manual download from Gmail, and would need to live in Google Drive with a link from the archive (not hosted on the Artifact) since they're over the size cap even once downloaded.
 - **Unresolved, worth another look:** 5 messages, 7–15.8 MB, holding ~13 legal PDFs/DOCXs that are individually probably under the hosting cap but sit above the RAW-MIME transport ceiling — currently unreachable by any method tried. Not attempted: the `download_exhibits.py` script sitting in the user's Google Drive folder "Mullins Exhibit Downloader" (created by the user, not this session) — never inspected or run. Worth asking the user about before the next attempt.
+
+## Redaction — public case site (`site/index.html`)
+
+User asked to remove the invoice email and invoice details from the case site. Done by `scripts/strip_invoices_site.py`, verified by `scripts/verify_site_invoices.py`:
+
+- 3 records removed from `exdata` (258 → 255): `EX-221` (the June 2026 "Invoice" covering email), `EX-222` and `EX-232` (the two Eastman & Smith invoice PDFs, each carrying a named client's address plus invoice/client/matter numbers).
+- 2 documents removed from the library (76 → 74) and their extracted text removed from `DOCTEXT` (56 → 54). `site/docs/` is down to 106 files; the site hosts 53 of them.
+- `EX-170` (the receiver's First Interim Application of Fees and Costs) was **reclassified** `invoice` → `filing` rather than removed — it is a court filing, not a bill to the owners, and the money classifier has always treated it that way.
+- The aggregated "Eastman & Smith invoices & retainer demands — the full billing series" record is gone, along with the now-unused `billing` record type.
+- Billing detail quoted inside messages that stay was scrubbed in place: the `$595.29` invoice balance, the check-mailing/credit-card payment block, the LawPay link and the client/matter numbers, replaced with a visible "[Payment instructions and billing account details removed from the public archive.]" marker. The retainer facts the case narrative depends on (the $800 demand, its Sept. 25 deadline, that the invoice depleted the retainer) are kept.
+- UI: the "Invoices" filter chip, the `invoice` kind label, the `invoice` topic keyword and the timeline's cross-reference to `EX-222` are all gone, so nothing renders empty.
+- Checked by rendering the page headless (Playwright/Chromium): no JS errors, 83 records, "74 of 74 documents", no empty "Related documents" blocks.
+
+**Still outstanding on the other public artifact:** `email-index/index.public.html` keeps the Sept. 2026 retainer thread (correctly — `retainer` was never the redaction target), and that thread's body text still contains the `$595.29` balance, the LawPay payment link and client #3472 / matter #222027. If those should go too, it is the same scrub applied to that file's `emaildata`, plus the `595.29` entry in `moneytags`.
 
 ## Redaction (public email-index viewer only)
 
