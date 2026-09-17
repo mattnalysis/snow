@@ -1,22 +1,36 @@
-# Status — as of 2026-09-17
+# Status — as of 2026-09-17 (later same day)
 
 Read `PRD.md` first for why this exists and the rules that must not be re-litigated (iframe/link constraints, classification rule, redaction policy). This file is "what's true right now."
+
+## ⚠️ Read this before touching the case site artifact
+
+**Two Claude sessions edited `https://claude.ai/artifact/JbT43rhsCqEtpDkoF3E1WF` concurrently on 2026-09-17.** One session (this repo's usual lineage) was doing the invoice/personal redaction pass. A *second*, independent session — almost certainly started fresh from this repo's `PRD.md`/`STATUS.md` in a different tab/client while this one kept running unbroken — was working the same artifact at the same time and got further ahead on the actual hard problem (see below). Neither session knew about the other until a publish was refused with a version conflict.
+
+**Before you touch `site/index.html` or publish to that URL again:**
+1. `Artifact action:"read"` the live URL first. Do not assume this repo's `site/index.html` matches what's actually live — it may not.
+2. If it doesn't match, that's not necessarily wrong — read what's there, and if it's further along than this repo (as it was on 2026-09-17), pull it in as the new base rather than overwriting it. `git` has no record of artifact-only changes; the live page can be ahead of the repo.
+3. Check `list_sessions` / ask the user whether another session is active on this project before doing a large rewrite.
+
+**What the other session had built, not yet captured in this repo as of this commit:** a dedicated `#attachments` section — "The files themselves — nothing else" — that hands each file to `navigator.share()` (Web Share API) instead of a plain link. On iOS this raises the native share sheet directly (Save to Files, Open in Books, Mail, Print), which is a materially more promising fix than the copy-address-into-Safari pattern this session had been using, because it doesn't depend on the user manually pasting anything. It also documents two fallbacks: long-press the filename for iPadOS's own context menu, or copy-address-into-Safari as a last resort. **This code was never committed to git — it exists only in the live published artifact.** If you can read it, pull `site/index.html` from the live artifact into this repo before doing anything else with the case site.
+
+This session's own diagnostic contribution, not yet merged into the live artifact: pasting a hosted document's address into the browser bar redirected back to the main artifact page rather than loading the file — consistent with `claudeusercontent.com` being a registered iOS Universal Link domain and the installed Claude app intercepting the navigation (same mechanism suspected earlier for broken Gmail links). Safari is documented to exempt manually-entered addresses from that handoff; Chrome for iOS may not. Worth folding into whichever guidance text survives the merge.
 
 ## Live URLs
 
 | What | URL | Version at last publish |
 |---|---|---|
-| Public case site | https://claude.ai/artifact/JbT43rhsCqEtpDkoF3E1WF | 22 |
-| Email index QA viewer (redacted, public) | https://claude.ai/artifact/2LuiMSfwGFiSKaa414wMQb | 7 |
+| Public case site | https://claude.ai/artifact/JbT43rhsCqEtpDkoF3E1WF | **Unknown/contested — see warning above. Do not trust the version number here.** |
+| Email index QA viewer (redacted, public) | https://claude.ai/artifact/2LuiMSfwGFiSKaa414wMQb | 8 |
 
-Both are published from files now committed in this repo (`site/index.html`, `email-index/index.public.html`), so they can be re-published in one `Artifact` publish call with `url:` set to the link above — no need to rebuild from scratch.
+The email-index viewer had no concurrent-session conflict; its published state matches `email-index/index.public.html` in this repo. The case site did — see the warning section above before publishing to it.
 
 ## Repo layout
 
 ```
 data/emails/*.json          complete, unredacted email database — 349 messages, source of truth
-site/index.html             public case site source (published as Version 22 above)
-site/docs/                  108 hosted files shared by both artifacts (55 EX-* originals + 53 R-* recovered)
+site/index.html             public case site source -- STALE relative to live artifact, see warning above
+site/docs/                  105 hosted files in this repo (52 EX-* + 53 R-*; 3 invoice PDFs removed) -- the
+                             live case-site artifact's actual file count may differ, see warning above
 email-index/index.public.html   redacted viewer, currently published (254 messages, 76 files)
 email-index/index.full.html     complete viewer, NEVER published — local reference / audit copy only
 email-index/recovered-manifest.json   provenance for the 61 recovered attachments (messageId → saved file)
@@ -42,10 +56,10 @@ Integrity verified: all 10 schema fields present on every record, no personal re
 
 ## Document hosting
 
-- **108 files, 39 MB**, staged in `site/docs/` and hosted by both artifacts.
-- 55 are the original case exhibits (`EX-006.pdf` … `EX-258.pdf`), matched against the `data/emails` records by (threadId, filename) — the mapping lives inline in both HTML files as `attmap` (email-index) and `libdata` (site).
+- **105 files, ~36 MB**, staged in `site/docs/` in this repo (down from 108/39 MB after the three invoice PDFs — EX-170, EX-222, EX-232 — were removed). This repo copy is what the *email-index* viewer's published `files` set is built from; **the case-site artifact's actual live file set is not known to match this** — see the concurrent-session warning up top.
+- 52 are original case exhibits (`EX-006.pdf` … `EX-258.pdf`), matched against the `data/emails` records by (threadId, filename) — the mapping lives inline in both HTML files as `attmap` (email-index) and `libdata` (site).
 - 53 (`R-001` … `R-053`) were recovered this session via the RAW-MIME technique below. Three are `.docx` sources the platform won't serve directly — `R-001/002/003.html` — rendered to readable HTML by `scripts/docx2html.py` because **LibreOffice is broken in this container** (fails `--convert-to pdf` even on a minimal valid docx with a simple filename; don't waste time on it again, use the script).
-- **The public email-index viewer hosts only 76 of the 108** — 33 invoice PDFs were deliberately unpublished as part of the redaction (see below). The full 108 remain in `site/docs/` here and are what the public *case site* still uses.
+- **The public email-index viewer hosts 76 of these 105** — the rest (mostly R-* files) aren't referenced by any non-redacted email-index record. 105 remain in `site/docs/` here.
 
 ### Attachment recovery — how, and where it stopped
 No Gmail tool exposes attachment bytes directly. Working method: `mcp__Gmail__get_message` with `messageFormat: "RAW"` returns full MIME; attachments are inline base64. Decode (`base64.urlsafe_b64decode`, padded) and parse with `email.message_from_bytes(...)`. Scripted in `scripts/extract.py`.
