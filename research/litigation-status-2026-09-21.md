@@ -79,7 +79,36 @@ A thorough Gmail search (today's mail, opposing counsel, AG's office, court/dock
 - Chappelear's response pattern: promises a **verbal** summary "after the next status conference," not a written accounting. No evidence found that an itemized breakdown of the $70k reserve's actual draw-down was ever circulated.
 - Legal wrinkle limiting homeowners' leverage: Chappelear's termination letter states the receiver **"is not a fiduciary with any duties to the lot owners."** His accountability runs to the court, not directly to the homeowners — they can't independently compel an accounting from him; only the court can.
 
-**Gap:** no dollar figures found anywhere in the recovered record for (a) the amount requested in the first fee application, or (b) the current balance/draw-down of the $70,000 reserve. The Fourth Interim Report itself (project-status narrative) has no financial figures; the companion Fee/Cost Application document that would have them was forwarded by email but isn't among the documents recovered with readable text — worth another attachment-recovery pass if this number matters later.
+**Gap — now closed (2026-09-23):** the actual First Interim Fee Application text (thread `1971905d8a1d62fe`, "2025-05-28 First Interim App of Fees and Costs.pdf", 58,807 chars, OCR'd) was already fully recovered in the archive — it just hadn't been read in full before. It gives exact figures:
+
+| Applicant | Period | Hours | Rate | Fees | Expenses | Total |
+|---|---|---|---|---|---|---|
+| Receiver (Jack Harris) | Oct. 4, 2024 – Apr. 25, 2025 | 107.3 | $165.00/hr | $17,704.50 | $0.00 | **$17,704.50** |
+| Receiver's counsel (Aaron Firstenberger, Strip Hoppers Leithart McGrath & Terlecky) | Through Feb. 28, 2025 | 49.60 | $350.00/hr | $16,135.00 | $365.42 | **$16,500.42** |
+| **Combined, this application** | | | | | | **$34,204.92** |
+
+**Why this matters:** this is just the *first* of what will be recurring fee applications, and it already draws roughly **49% of the entire $70,000 City reserve** in about seven months of receivership. At anything like this burn rate, the reserve could plausibly run out well before the case reaches trial or the HOA is fully organized — which makes "what happens if the $70,000 runs out" a live question rather than a hypothetical one, even though (per the section above) nothing in the record yet says homeowners would be billed for a shortfall. Worth watching each subsequent fee application (the Fourth Interim Report references at least one more) to track the running balance.
+
+Also recovered from this document: the Landings Property Owners Association, Inc.'s current registered-agent address is listed as **c/o George Bertko, P.O. Box 336, Mount Vernon, OH 43050** — a P.O. box, not a physical office, and Receiver Jack Harris/Intercept Management Corp. is based at **20 North St., Ste. K, Dublin, OH 43017** (~45 minutes from Mount Vernon), consistent with the March 2024 memo's point that the "corporation" has no real local presence of its own.
+
+## Real street addresses recovered — for the geography/map section (2026-09-23)
+
+The same document's certificate-of-service page lists every party by name and address, giving genuine street-level detail for the case's geography for the first time (previously the site only had "~68 lots" in the abstract):
+
+**Streets inside The Landings Phase VII/VIII itself** (all Mount Vernon, OH 43050):
+- Woodlake Trail — Nos. 63, 66, 70, 76, 85, 88, 90 confirmed (owners: Curry, Belcher/Kanipe area, Miglin, Geforos, Taylor, A. & K. Clark)
+- Wildwood Lane East — No. 14 (Firstenberger — note: same surname as the receiver's counsel Aaron Firstenberger, unconfirmed if related)
+- Wildwood Lane West — Nos. 43, 54, 66 (Kochis; Mills; Didinger Trust)
+- Longvue Court / "Longview Ct." (spelled both ways in filings) — Nos. 2, 5, 8, 9 (Boyd Family Trust; Gray; Shafer; Stull Preservation Trust/Didinger)
+- Adamson Street — No. 222 (Giakoumas)
+
+**Mallard Pointe** (separate development, individual owner-defendants, no incorporated HOA found — see above): Nos. 43, 45, 51, 53 (Godfrey Trust; Farmer; Schisler; Harper)
+
+**Waters Edge** — no street address recovered yet (its HOA is represented by out-of-town counsel, Fischer Evans & Robbins in Canton, OH; the neighborhood's own street name hasn't turned up in anything read so far).
+
+**Dam site itself:** Yauger Road, Mount Vernon, OH 43050 (per the site's own case-caption metadata).
+
+This list is not exhaustive — it's only the addresses that happened to appear in one document's service list — but it's the first real geographic anchor for the case, used to build the Geography section's map links.
 
 ## Newly recovered: "Kidwell & Cunningham 0001-0013.pdf" (2026-09-22)
 
