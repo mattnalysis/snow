@@ -1,96 +1,78 @@
-# Status — as of 2026-09-17 (later same day)
+# Status — as of 2026-09-23 (end of session)
 
-Read `PRD.md` first for why this exists and the rules that must not be re-litigated (iframe/link constraints, classification rule, redaction policy). This file is "what's true right now."
-
-## ⚠️ Read this before touching the case site artifact
-
-**Two Claude sessions edited `https://claude.ai/artifact/JbT43rhsCqEtpDkoF3E1WF` concurrently on 2026-09-17.** One session (this repo's usual lineage) was doing the invoice/personal redaction pass. A *second*, independent session — almost certainly started fresh from this repo's `PRD.md`/`STATUS.md` in a different tab/client while this one kept running unbroken — was working the same artifact at the same time and got further ahead on the actual hard problem (see below). Neither session knew about the other until a publish was refused with a version conflict.
-
-**Before you touch `site/index.html` or publish to that URL again:**
-1. `Artifact action:"read"` the live URL first. Do not assume this repo's `site/index.html` matches what's actually live — it may not.
-2. If it doesn't match, that's not necessarily wrong — read what's there, and if it's further along than this repo (as it was on 2026-09-17), pull it in as the new base rather than overwriting it. `git` has no record of artifact-only changes; the live page can be ahead of the repo.
-3. Check `list_sessions` / ask the user whether another session is active on this project before doing a large rewrite.
-
-**What the other session had built, not yet captured in this repo as of this commit:** a dedicated `#attachments` section — "The files themselves — nothing else" — that hands each file to `navigator.share()` (Web Share API) instead of a plain link. On iOS this raises the native share sheet directly (Save to Files, Open in Books, Mail, Print), which is a materially more promising fix than the copy-address-into-Safari pattern this session had been using, because it doesn't depend on the user manually pasting anything. It also documents two fallbacks: long-press the filename for iPadOS's own context menu, or copy-address-into-Safari as a last resort. **This code was never committed to git — it exists only in the live published artifact.** If you can read it, pull `site/index.html` from the live artifact into this repo before doing anything else with the case site.
-
-This session's own diagnostic contribution, not yet merged into the live artifact: pasting a hosted document's address into the browser bar redirected back to the main artifact page rather than loading the file — consistent with `claudeusercontent.com` being a registered iOS Universal Link domain and the installed Claude app intercepting the navigation (same mechanism suspected earlier for broken Gmail links). Safari is documented to exempt manually-entered addresses from that handoff; Chrome for iOS may not. Worth folding into whichever guidance text survives the merge.
+Read `PRD.md` first for why this project exists and the platform rules that must not be re-litigated (iframe/link constraints, classification rule, redaction policy). This file is "what's true right now" — rewritten this session to replace a stale 2026-09-17 version. If you're starting a fresh session after a context clear, read this file, then `research/litigation-status-2026-09-21.md` (case facts), in that order, before touching anything.
 
 ## Live URLs
 
 | What | URL | Version at last publish |
 |---|---|---|
-| Public case site | https://claude.ai/artifact/JbT43rhsCqEtpDkoF3E1WF | **Unknown/contested — see warning above. Do not trust the version number here.** |
-| Email index QA viewer (redacted, public) | https://claude.ai/artifact/2LuiMSfwGFiSKaa414wMQb | 8 |
+| Public case site | https://claude.ai/artifact/JbT43rhsCqEtpDkoF3E1WF | **36** (2026-09-23) |
+| Email index QA viewer (redacted, public) | https://claude.ai/artifact/2LuiMSfwGFiSKaa414wMQb | 8 (untouched this session) |
 
-The email-index viewer had no concurrent-session conflict; its published state matches `email-index/index.public.html` in this repo. The case site did — see the warning section above before publishing to it.
+`site/index.html` in this repo is kept byte-identical to the live artifact after every publish this session — safe to treat the repo copy as current, but **always re-`Artifact action:"read"` the live URL before your first edit of a new session anyway**, in case something changed outside this repo's lineage (this exact thing happened once earlier in the project's history — see git log `bbdd21b`).
 
-## Repo layout
+## What the site now contains (11 sections, in nav order)
+
+1. **Brief** — case summary narrative (5 subsections)
+2. **Decided & Open** — scorecard of resolved/unresolved issues
+3. **Timeline** — litigation dispute chronology (`TL` array, 33 entries after tonight)
+4. **People** — 18 bios (`PEOPLE` array), each linking into filtered Record search
+5. **Questions** — "Outstanding Questions": 18 Q&A cards, case questions + Matt's own, each tagged answered/disputed/still-open with a source line
+6. **Neighborhoods** — HOA formation timeline + the "who pays what" SVG diagram + the ownership-vs-cost-sharing explanation callout
+7. **Costs** — new this session: a 29-row table (`<table class="costtable">`) of every dollar figure found in the case, by category, with payer and status
+8. **Geography** — real street addresses + Google Maps links + an 18-term legal/real-estate glossary, both with click-to-expand "More detail"
+9. **The Record** — searchable email/filing database (`R`/`GROUP`/`PERS`), with content-type/filer/response/person/topic filters
+10. **Documents** (`#library`) — full document library (`LIB` array), Drive-linked where possible
+11. **Press**
+
+## Technical architecture — read this before editing `site/index.html` again
+
+The page has **three `<script>` tags**, executed in this order, sharing one global scope (classic scripts, not modules — `let`/`const`/`function` declared in one are visible to the others):
+
+- **script_0** (~1.18 MB): defines `R` (the Record array, ~83 entries), `GROUP`/`PERS`, `TOPICS`, `ALIAS`, and — **a dead, superseded `render()` function plus chip/scope UI wiring that has no matching HTML anymore.** It runs harmlessly (its `querySelectorAll` calls just return empty NodeLists) but if you go looking for "the render function," don't stop at the first one you find in source order — it's not the one that runs. Also contains orphaned CSS-adjacent dead code: the `.tcard`/`.tgrid`/"information web" topic-cards feature was fully styled but never built into HTML; harmless, never cleaned up, still there.
+- **script_1** (~6 KB): the **real, active** `render()` for the Record section, plus `FILEMETA` (filer/response tags for the 28 filing-type records, added this session), the `R.forEach` enrichment loop (`_docs`, `_email`, `_hay`, `_tp`, `_filingSub`, `_filer`, `_resp`).
+- **script_2** (~21 KB): `LIB`/`PEOPLE` arrays, `renderLib()`, `renderTimeline()`, `EX_TO_DRIVE`/`driveLinkHtml()` (Drive-link fix for the iOS interception bug — 53 mapped EX/R ids), the dropdown-filter event wiring, `setupCollapsible()` (every `main > section` collapses on load; a link into `#record` etc. auto-expands its target via each section's own `.__toggle(true)` method it attaches to itself).
+
+**Consequence for Playwright verification:** every section is collapsed by default. Before asserting on content inside a section, call `document.getElementById(id).__toggle(true)` in `page.evaluate`, or nothing you're checking exists in the DOM yet as far as visible/interactive state goes (it's in the DOM, just hidden — `hidden` attribute on `.sec-body`).
+
+## The safe-edit workflow (validated repeatedly this session — follow it exactly)
+
+1. `Artifact action:"read"` the live URL. Note the saved file path in the tool result — that's your base, not any local file you remember from earlier in the conversation.
+2. Copy that file into the scratchpad (`cp <saved-path> .../scratchpad/site_vNN.html`) and edit it there with **Python scripts using exact string `.replace()` with an `assert count==1` guard** — the file is ~3.2 MB on a handful of enormous single lines; the `Edit` tool's line-based matching is not practical here, and blind multi-match replaces are how you silently corrupt three things at once.
+3. Verify, in order, before ever publishing:
+   - `grep -c '<section id=' file | ` vs `grep -c '</section>'` — must match.
+   - Extract every non-JSON `<script>` body and run `node --check` on each. **Two real bugs this session were caught exactly here**: (a) injecting `<a href="...">` into an already-double-quoted JS string without escaping the inner quotes as `\"` (broke `script_0.js` parsing); (b) an apostrophe inside a single-quoted Python string while *writing* the edit script itself (Python-level, caught before it ever touched the HTML).
+   - Playwright: load the file, expand any sections you're testing, assert on real DOM state (element counts, computed `href`s, filter behavior), capture `pageerror`/`console` listeners, and — for anything visual (SVG diagrams, tables, new layout) — take a screenshot and actually look at it. A wide `<table>` or `<svg>` should sit inside `.figwrap` (`overflow-x:auto`); confirm with `body.scrollWidth === body.clientWidth` that the *page* never overflows, only the inner wrapper (checked explicitly this session for the Costs table).
+4. Publish: `Artifact action:"publish"` with the **same `url`**, `file_path` pointing at your verified scratchpad file, a `label` under 60 characters.
+5. Immediately `cp` that same file over `site/index.html` in the repo, `git add`/`commit`/`push` to `claude/dam-lawsuit-research-brief-uxry1u`. Never let the repo and the live artifact drift — this session kept them byte-identical after every single publish (v30 through v36).
+
+## Reusable patterns established this session
+
+- **Drive-link fix for "opens the Claude artifact, not the file"**: `EX_TO_DRIVE` id→URL map + `driveLinkHtml(id, label)` in script_2, called first by any code that would otherwise render a `doclink`/`sharebtn`. Extend this map (don't build a second mechanism) if more documents get Drive copies.
+- **Google Maps links, no API key needed**: single pin — `https://www.google.com/maps/search/?api=1&query=<urlencoded address>`; multiple pins in one view — `https://www.google.com/maps/dir/<addr1>/<addr2>/.../` (kept to ~9 waypoints; untested above that).
+- **Click-to-expand, zero JS**: native `<details class="gmore"><summary>More detail</summary><div class="gmorebody">…</div></details>`, styled only via `.gmore summary::marker{color:...}`. Used for the Geography glossary (18 terms) and neighborhood rows (7). Prefer this over hand-rolled toggle JS for any future "show more" request.
+- **Cost/data tables**: real `<table>` inside a `.figwrap` div for horizontal-scroll-on-mobile, category-header rows as `<tr class="cat-row"><th colspan="4">…</th></tr>`, status as a small pill (`<span class="cost-status paid|ongoing|pending|rejected|trial|historical">`).
+
+## Known open items
+
+1. **The Sept. 23, 2024 ownership ruling itself ("download (3).pdf") is still not in the archive.** It's a real attachment (Gmail thread `19224bab1069880d`, message `19224bab1069880d`, sender Mark Long) but at ~22 MB it's more than 3× the ~7 MB Gmail RAW-MIME transport ceiling (confirmed dropped again this session) and isn't sitting in Matt's Drive folder under any name searched so far. **Ask Matt to upload it to the shared Drive folder** (any filename) — then wire it in via the same `EX_TO_DRIVE` pattern rather than attempting Gmail recovery again.
+2. **Two competing draft maintenance-fee models exist** (flat $12.23/mo vs. tiered $12.08 condo/$17.25 single-family) and it's not established in the record which one the receiver will actually file. Logged as an open question on the site; worth a fresh Gmail/Drive search if a definitive later document surfaces.
+3. **Mullins Bros.' $20,000 court-costs deposit** (ordered Oct. 2024) has no confirmation of payment anywhere recovered — worth checking for a compliance filing if it ever matters.
+4. The dead code in script_0 (old `render()`, chips/scope UI, `.tcard`/`.tgrid` information-web CSS) still hasn't been cleaned up. Low priority — it's inert — but flagging again since it was flagged once before (this file's prior version, 2026-09-17) and still hasn't been touched. If a future session has spare scope, removing it would shrink the file and reduce confusion for the next editor.
+5. Standing instruction, still in effect: **do not attempt to send anything to emoyo@porterwright.com** (Elizabeth Moyo, Porter Wright) unless Matt explicitly asks again — he told a prior session to stop.
+
+## Case-knowledge pointer
+
+Every substantive case finding from this session (and prior ones) is in `research/litigation-status-2026-09-21.md`, appended chronologically with dated section headers and full sourcing (document names, thread IDs, exact quotes). It now runs ~290+ lines; a short index of section headers would help a fresh reader — worth adding if this file keeps growing. The single highest-value thing learned this session, if you only remember one: **ownership of the dam (narrow, court-ordered, ~68 Phase VII/VIII owners) and the ongoing maintenance assessment (broad, 245 properties, a never-litigated stormwater-basin utility-fee theory) rest on two different legal foundations that a July 2022 court order once tried to reconcile and then never did** — that single fact explains most of what looks contradictory about "who owes what" in this case.
+
+## Repo layout (unchanged from PRD.md, repeated for convenience)
 
 ```
-data/emails/*.json          complete, unredacted email database — 349 messages, source of truth
-site/index.html             public case site source -- STALE relative to live artifact, see warning above
-site/docs/                  105 hosted files in this repo (52 EX-* + 53 R-*; 3 invoice PDFs removed) -- the
-                             live case-site artifact's actual file count may differ, see warning above
-email-index/index.public.html   redacted viewer, currently published (254 messages, 76 files)
-email-index/index.full.html     complete viewer, NEVER published — local reference / audit copy only
-email-index/recovered-manifest.json   provenance for the 61 recovered attachments (messageId → saved file)
-scripts/                    the working pipeline: classification, docx→html conversion, redaction, verification
+site/index.html             public case site — kept identical to the live artifact
+site/docs/                  hosted exhibit/recovered files
+research/litigation-status-2026-09-21.md   the case-research log — read this for facts
+data/emails/*.json          complete, unredacted email database (349 messages)
+email-index/                the separate email-index viewer product (see PRD.md)
+PRD.md                      why this project exists, hard platform constraints
+STATUS.md                   this file
 ```
-
-## Email database — complete
-
-349 messages across 166 threads, all five year-buckets present and pushed:
-
-| Bucket | Messages | Group | Personal |
-|---|---|---|---|
-| pre-2023 | 25 | 23 | 2 |
-| 2023 | 99 | 84 | 15 |
-| 2024 | 113 | 87 | 26 |
-| 2025 | 73 | 65 | 8 |
-| 2026 | 39 | 34 | 5 |
-| **Total** | **349** | **293** | **56** |
-
-Integrity verified: all 10 schema fields present on every record, no personal record carries body/attachment content, no duplicate message IDs within or across files. 152 attachments catalogued (metadata); 586,233 characters of body text.
-
-**Caveat on completeness:** discovery was a keyword sweep (`"Knox Cattle" OR "The Landings" OR Mullins OR "20IN06" OR Chappelear OR "Eastman & Smith" OR receiver OR ARPA OR Wetzel OR Kimbler OR ...`, see `scripts/build_worklist.py` for the exact query). ~250 of the ~440 candidate threads it surfaced were newsletter/e-commerce false positives, filtered by sender/content inspection. A genuine case email from an unusual sender using none of this vocabulary could in principle be missed. Re-running discovery periodically (new mail keeps arriving — Eastman & Smith's withdrawal was Sept. 2026) is worth doing rather than treating this as permanently closed.
-
-## Document hosting
-
-- **105 files, ~36 MB**, staged in `site/docs/` in this repo (down from 108/39 MB after the three invoice PDFs — EX-170, EX-222, EX-232 — were removed). This repo copy is what the *email-index* viewer's published `files` set is built from; **the case-site artifact's actual live file set is not known to match this** — see the concurrent-session warning up top.
-- 52 are original case exhibits (`EX-006.pdf` … `EX-258.pdf`), matched against the `data/emails` records by (threadId, filename) — the mapping lives inline in both HTML files as `attmap` (email-index) and `libdata` (site).
-- 53 (`R-001` … `R-053`) were recovered this session via the RAW-MIME technique below. Three are `.docx` sources the platform won't serve directly — `R-001/002/003.html` — rendered to readable HTML by `scripts/docx2html.py` because **LibreOffice is broken in this container** (fails `--convert-to pdf` even on a minimal valid docx with a simple filename; don't waste time on it again, use the script).
-- **The public email-index viewer hosts 76 of these 105** — the rest (mostly R-* files) aren't referenced by any non-redacted email-index record. 105 remain in `site/docs/` here.
-
-### Attachment recovery — how, and where it stopped
-No Gmail tool exposes attachment bytes directly. Working method: `mcp__Gmail__get_message` with `messageFormat: "RAW"` returns full MIME; attachments are inline base64. Decode (`base64.urlsafe_b64decode`, padded) and parse with `email.message_from_bytes(...)`. Scripted in `scripts/extract.py`.
-
-- **Confirmed hard ceiling: ~7 MB.** Every message at or above that size drops the Gmail MCP connection ("session expired"), consistently, across repeated attempts with 90s/180s backoff. This is a transport limit, not rate limiting — retrying the same way won't help.
-- 61 attachments recovered this way (manifest in `email-index/recovered-manifest.json`).
-- **Confirmed unrecoverable by any method (exceed the ~15 MB Artifact hosting cap regardless):**
-  - Mullins Documents, 2 PDFs — message ~40.5 MB
-  - Steve Mullins 10-10-23 transcript (zip) — message ~20.4 MB
-  - Steve Mullins Vol II 11-29-23 (PDF) — message ~20.3 MB
-  - These need the user's own manual download from Gmail, and would need to live in Google Drive with a link from the archive (not hosted on the Artifact) since they're over the size cap even once downloaded.
-- **Unresolved, worth another look:** 5 messages, 7–15.8 MB, holding ~13 legal PDFs/DOCXs that are individually probably under the hosting cap but sit above the RAW-MIME transport ceiling — currently unreachable by any method tried. Not attempted: the `download_exhibits.py` script sitting in the user's Google Drive folder "Mullins Exhibit Downloader" (created by the user, not this session) — never inspected or run. Worth asking the user about before the next attempt.
-
-## Redaction (public email-index viewer only)
-
-User asked to strip personal and invoice/receipt messages from the *public* copy. Done in `email-index/index.public.html`:
-- 95 messages removed (56 personal + 39 invoice/receipt — all 9 LawPay receipts were already inside the personal set).
-- 33 now-orphaned invoice PDFs unpublished from that artifact (not just unlinked — actually removed from the hosted file set).
-- Verified by `scripts/verify_redaction.py` against the published source: zero removed message IDs, zero removed body-text fragments, zero invoice filenames, zero orphaned doc paths anywhere in the file.
-- **`data/emails/*.json` and `email-index/index.full.html` are intentionally NOT redacted** — they are the complete private record. Never publish `index.full.html`.
-
-## Money/invoice classification
-
-`scripts/classify_money.py` — a scored classifier (LawPay sender → receipt; "retainer" in subject → retainer; "invoice"/"past due" in subject or numerically-named PDF attachment → invoice; "fees and costs" → fee application; else a dollar amount + strong body keyword → "discussion"). Deliberately not keyword-matching on words like "paid"/"check" — those appear throughout ordinary status-conference chatter and would swamp the filter. This classifier's output (`money_tags`) is embedded in both email-index viewers; it's gone from the public one except `retainer`/`fees`/`discussion` categories (invoices and receipts were the redaction target).
-
-**Known gap:** invoice *amounts* are not in the email body text — Eastman & Smith's covering emails say "see balance on page two" of the attached PDF. The filter gets you to the right message/document; it does not currently extract the dollar figure itself.
-
-## Known open items / next steps
-
-1. **2023 was lost once already** to a session rate limit mid-run and had to be redone — if this database is regenerated from scratch in a future session, budget for that and write output incrementally (the retry did this; the original attempt did not).
-2. **The 5 stuck 7–15.8 MB messages** (~13 documents) — try a different retrieval path, or ask the user whether their own `download_exhibits.py` (Google Drive, "Mullins Exhibit Downloader" folder) is meant to solve this.
-3. **The three genuinely-too-large Mullins items** need the user to download manually and decide on Drive-linking rather than hosting.
-4. Both artifacts' `site/docs` / hosted-file sets can drift from `site/docs/` in this repo if either is republished with a different `files` map elsewhere — this repo copy is the durable reference; reconcile with `list_files` on the live artifact before assuming they match.
-5. Re-run the Gmail discovery sweep periodically — new case mail keeps arriving (counsel's withdrawal was Sept. 2026; a new-counsel search is actively underway per the case site's own timeline).

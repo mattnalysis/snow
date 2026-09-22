@@ -1,6 +1,19 @@
-# Litigation status research — as of 2026-09-21
+# Litigation status research — as of 2026-09-21 (updated through 2026-09-23)
 
-Answers to a Q&A session digging into the case's procedural posture. Everything here is sourced from documents already in `site/docs/` (via the extracted text in `site/index.html`'s hosted-file set) or from Gmail threads, cited by document name / thread ID so it can be re-verified against the primary source.
+Answers to a Q&A session digging into the case's procedural posture. Everything here is sourced from documents already in `site/docs/` (via the extracted text in `site/index.html`'s hosted-file set) or from Gmail threads, cited by document name / thread ID so it can be re-verified against the primary source. Sections are appended in the order questions came in, not strict chronological order — use the index below to jump to a topic.
+
+## Quick index
+
+**The core tension, if you read nothing else:** ownership of the dam (narrow, court-ordered, ~68 Phase VII/VIII owners) and the ongoing maintenance assessment (broad, 245 properties, a never-litigated theory) rest on two different legal foundations — see "Why ownership... don't line up," below.
+
+- **Case basics**: [Case caption](#case-caption) · [What "open and pending" means](#what-open-and-pending-means-here) · [What's left for trial](#whats-left-for-the-court-to-decide) · [No new lawsuit found (2026-09-21 check)](#no-new-lawsuit-found)
+- **The Long Defendants' own claims**: [counterclaim/cross-claim status](#the-long-defendants-own-claims-not-just-defenses) · ["Did we ever get answers?" — the March 2024 memo on the 5 court questions](#did-we-ever-get-answers-for-these--the-march-26-2024-supplemental-memorandum-2026-09-22)
+- **Money — the receiver**: [how the $70k fee reserve works](#how-the-receivers-fee-is-being-paid) · [is it ever reported short? (no)](#is-the-70000-receiver-reserve-ever-reported-as-short-2026-09-22) · [is the accounting transparent? (contested)](#is-the-accounting--receivers-fees-transparent-and-reported-2026-09-22)
+- **Money — everything else**: [every dollar figure in the case, by category](#every-dollar-figure-found-in-the-case-by-category-2026-09-23) — the master cost inventory behind the site's Costs table
+- **The ownership-vs-payment puzzle**: [why ownership (narrow) and cost-sharing (broad) don't line up](#why-ownership-narrow-and-maintenance-cost-sharing-broad-dont-line-up-2026-09-23) — the 2022 joinder order that was never followed up on
+- **Entities & neighborhoods**: [the other HOAs in the maintenance zone](#the-other-hoas-in-the-maintenance-zone-2026-09-22) · [the unresolved third "Phase VII & VIII, Inc." entity](#phase-vii--viii--the-merger-question-is-not-clearly-resolved-in-the-record-2026-09-22) · [Declaration/plat timeline](#development-phase--declaration-timeline-sourced-from-discovery-2026-09-22) · [real street addresses recovered](#real-street-addresses-recovered--for-the-geographymap-section-2026-09-23)
+- **Documents recovered**: [Kidwell & Cunningham deed-restriction forms](#newly-recovered-kidwell--cunningham-0001-0013pdf-2026-09-22) · [new developments as of 2026-09-20/21](#new-development-as-of-2026-09-2021-not-yet-reflected-on-the-public-case-site)
+- **Still missing**: the Sept. 23, 2024 ownership ruling itself ("download (3).pdf," ~22MB) — see `STATUS.md`, "Known open items"
 
 ## Case caption
 
