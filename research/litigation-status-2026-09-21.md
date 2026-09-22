@@ -80,3 +80,30 @@ A thorough Gmail search (today's mail, opposing counsel, AG's office, court/dock
 - Legal wrinkle limiting homeowners' leverage: Chappelear's termination letter states the receiver **"is not a fiduciary with any duties to the lot owners."** His accountability runs to the court, not directly to the homeowners — they can't independently compel an accounting from him; only the court can.
 
 **Gap:** no dollar figures found anywhere in the recovered record for (a) the amount requested in the first fee application, or (b) the current balance/draw-down of the $70,000 reserve. The Fourth Interim Report itself (project-status narrative) has no financial figures; the companion Fee/Cost Application document that would have them was forwarded by email but isn't among the documents recovered with readable text — worth another attachment-recovery pass if this number matters later.
+
+## Newly recovered: "Kidwell & Cunningham 0001-0013.pdf" (2026-09-22)
+
+This document previously existed only as a stub in the record — a filename and a useless 337-character text snippet (just the Bates stamps "Kidwell & Cunningham 0001" through "0013", nothing else), because it had never actually been recovered as a file. The underlying email (Gmail message `18c608a7fb402178`, "Fwd: Documents from Kidwell & Cunningham," 2023-12-13, ~3MB) was small enough to pull via the RAW-MIME technique (see `STATUS.md`), so it's now recovered in full and saved to `site/docs/R-054.pdf` (added to `email-index/recovered-manifest.json`).
+
+**What it actually is**, per Chappelear's own cover email: Mullins Bros.' attorney subpoenaed Kidwell & Cunningham — a law firm that had done legal work for Mullins in the past — and received these 13 pages in response, which were then passed to the group during discovery (Dec. 2023).
+
+**Content:** a compilation of signed "Deed Restriction & Builder Acknowledgment" forms, one per lot (or group of lots), dated 2001–2007. The pages are scans; only the Bates stamp exists as a digital text layer, so the actual content required viewing the page images directly rather than text extraction. Each signer initialed:
+
+> "I HAVE READ, UNDERSTAND AND AGREE WITH ALL DEED RESTRICTIONS AND FURTHER ACKNOWLEDGE THAT THESE DEED RESTRICTIONS ARE RECORDED WITH THE KNOX COUNTY RECORDER."
+>
+> "I UNDERSTAND THAT I WILL BE A MEMBER OF AN ASSOCIATION THAT OWNS COMMON AREAS, INCLUDING ALL RETENTION PONDS AND FURTHER, THAT I WILL BE CALLED UPON TO PAY AN ANNUAL MAINTENANCE FEE OF $200.00 FOR THE UPKEEP AND MAINTENANCE OF THESE GROUNDS. FURTHER, I UNDERSTAND THAT ANY SUBSEQUENT OWNER WILL LIKEWISE BE REQUIRED TO BE A MEMBER AND PAY THE SAME ASSESSMENTS."
+
+**Signers identified, by lot number:**
+- Lot 732 — D. Derk Demaree — 4/28/01 (appears twice in the 13 pages, pp. 1 and 8 — likely a duplicate/reprint, not two different people)
+- Lots 728, 729, 730 — Stephen D. Mullendore — 5/25/05 (also appears twice, pp. 2 and 11)
+- Lot 734 — signature not clearly legible — 3/25/05
+- (unlabeled continuation page, p. 4) — buyer/owner signature blocks, phone numbers only, dated 3-15-07 — likely the reverse/second page of the Lot 734 form
+- Lots 717 & 733 — Robert Kirk (signed as both homeowner and builder) — 6/22/05
+- Lots 701/702 — unsigned, blank
+- Lot 720 — Paula Camille Compton-Solie — 4/27/05
+- Lots 703 & 708 — initials only, names not legible — 4/22/05
+- Lots 704, 706, 710, 711, 712, 714, 716 — initials "R.S.", builder Roy Schlabach — 4/22/05
+- Lot 717 — signature reads approx. "Peggy A. Addis" — 4/22/05
+- Lot 714 — signature reads approx. "Douglas Peterson" — undated; builder Roy Schlabach
+
+**Why this matters:** several of these names (Demaree, Mullendore, Peterson, Compton) match people still active in the current homeowner group's emails. This is signed, dated evidence that at least some current litigants personally acknowledged, at time of purchase, both the deed restrictions *and specifically* an obligation to fund "retention pond" maintenance as association members — directly relevant to the notice argument at the center of the case. Caveat: it says "retention ponds" generically, not dam safety — there's still room to argue this didn't put anyone on notice of *dam* maintenance/liability specifically, only general pond upkeep.
