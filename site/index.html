@@ -244,32 +244,14 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
   /* the sticky nav wraps to two lines on a tablet, so clear it, not just its first row */
   main > section{scroll-margin-top:5.5rem}
 
-  /* ---- attachments: the files on their own, nothing else ---- */
-  #attachments{scroll-margin-top:5.5rem}
-  .atbar{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:1.1rem 0 .5rem}
-  .atbar input[type=search]{flex:1 1 16rem;padding:.6rem .9rem;font:inherit;font-size:.95rem;
-    color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px}
-  .atstat{font-family:"IBM Plex Mono",monospace;font-size:.74rem;color:var(--muted);margin:0 0 .6rem}
-  .atlist{display:flex;flex-direction:column;gap:.5rem;margin:0;padding:0;list-style:none}
-  .arow{background:var(--panel);border:1px solid var(--line-soft);border-radius:6px;padding:.7rem .95rem}
-  .arow .ah{display:flex;gap:.55rem;align-items:baseline;flex-wrap:wrap}
-  .afile{font-family:"IBM Plex Mono",monospace;font-size:.82rem;font-weight:600;color:var(--accent-deep);
-    flex:1 1 18rem;word-break:break-word;text-decoration:underline;
-    text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);text-underline-offset:2px}
-  .afile:hover{text-decoration-color:var(--accent-deep)}
-  .ameta{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted);white-space:nowrap;margin-left:auto}
-  .akind{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.08em;
-    text-transform:uppercase;color:var(--muted);border:1px solid currentColor;border-radius:3px;padding:.08rem .38rem}
-  .aacts{margin-top:.45rem;display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
+  /* ---- share button + "share blocked" fallback note (used by document-library rows) ---- */
   button.sharebtn{font:inherit;font-size:.8rem;font-weight:600;color:var(--paper);background:var(--accent-deep);
     border:1px solid var(--accent-deep);border-radius:6px;padding:.34rem .8rem;cursor:pointer}
   button.sharebtn:hover{background:var(--accent)}
   :root[data-theme="dark"] button.sharebtn{color:#0d1412}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) button.sharebtn{color:#0d1412} }
-  .ahint{font-size:.78rem;color:var(--muted)}
-  .arow .docurl{display:none}
-  .arow.showurl .docurl,.drow.showurl .docurl{display:flex}
-  .arow.showurl,.drow.showurl{border-color:var(--warn)}
+  .drow.showurl .docurl{display:flex}
+  .drow.showurl{border-color:var(--warn)}
   .ublocked{flex:1 1 100%;font-size:.78rem;color:var(--warn);margin:.15rem 0 0}
 
   /* ---- people ---- */
@@ -336,7 +318,7 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
 <nav aria-label="Site">
   <span class="case">KNOX CO. C.P. NO. 20IN06-0149</span>
   <span class="links">
-    <a href="#brief">Brief</a><a href="#decided">Decided &amp; Open</a><a href="#timeline">Timeline</a><a href="#people">People</a><a href="#record">The Record</a><a href="#attachments">Attachments</a><a href="#library">Documents</a><a href="#press">Press</a>
+    <a href="#brief">Brief</a><a href="#decided">Decided &amp; Open</a><a href="#timeline">Timeline</a><a href="#people">People</a><a href="#record">The Record</a><a href="#library">Documents</a><a href="#press">Press</a>
   </span>
 </nav>
 
@@ -474,7 +456,7 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
   <div class="docnote">
     <p style="margin:.2rem 0 .5rem"><strong>How to read an entry.</strong> Each record is a group email or a news item, with a plain-English summary of what it says. Documents it carried are listed underneath, named and summarized so you know what a filing says before you open it — <strong style="display:inline">36 of the case's 57 documents</strong> converted to searchable text (10 of those by OCR); the rest are named and described but too large, too image-heavy, or — for the two HOA membership rosters — deliberately withheld as neighbours' personal data. Where text exists, <strong style="display:inline">Read full text</strong> expands it in place, and the search box below reaches every word of it, not just titles and summaries.</p>
     <p style="margin:0">For the official docket — including anything filed after counsel's withdrawal — search case <strong class="mono">20IN06-0149</strong> at the <a href="https://www.clerkofcourts.co.knox.oh.us/eservices/home.page.3" target="_blank" rel="noopener">Knox County Common Pleas public records portal ↗</a>. The engineering deck is public at the <a href="https://www.mtvernonoh.gov/DocumentCenter/View/753/Knox-Cattle-Company-Dam-Repair-Design-Evaluation-082025" target="_blank" rel="noopener">City of Mount Vernon Document Center ↗</a>.</p>
-    <p style="margin:.5rem 0 0"><strong>Tapping a document hands it to your device, not to this page.</strong> A PDF opened inside this page shows only its first page and won't scroll — the sandbox this page runs in doesn't paginate PDFs — so <strong style="display:inline">Share / Save</strong> passes the file to your system share sheet instead (Save to Files, Open in Books, Print), and the plain list of every file is in <a href="#attachments">Attachments</a>. "Open email thread" links still point at Gmail, which this page can't embed, and on some mobile browsers (confirmed on iPad Chrome) that tap does nothing at all. Every such link also shows its raw address in a small dashed box below it — tap once to select it (a single tap selects the whole address), copy it, then paste it directly into your browser's own address bar and go. That bypasses whatever is intercepting the tap.</p>
+    <p style="margin:.5rem 0 0"><strong>Tapping a document hands it to your device, not to this page.</strong> Where a document shows a green <strong style="display:inline">Drive copy</strong> badge, that link opens the file directly from Google Drive — the most reliable option. Otherwise, a PDF opened inside this page shows only its first page and won't scroll — the sandbox this page runs in doesn't paginate PDFs — so <strong style="display:inline">Share / Save</strong> passes the file to your system share sheet instead (Save to Files, Open in Books, Print); every document is listed, with these options, in <a href="#library">Documents</a>. "Open email thread" links still point at Gmail, which this page can't embed, and on some mobile browsers (confirmed on iPad Chrome) that tap does nothing at all. Every such link also shows its raw address in a small dashed box below it — tap once to select it (a single tap selects the whole address), copy it, then paste it directly into your browser's own address bar and go. That bypasses whatever is intercepting the tap.</p>
   </div>
   <div class="topicbar" id="topicBar"><span id="topicBarText"></span><button id="topicClear">clear topic ✕</button></div>
   <div class="toolbar">
@@ -519,20 +501,7 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
 
 
 
-<section id="attachments">
-  <p class="kicker">The files themselves — nothing else</p>
-  <h2>Attachments</h2>
-  <p style="max-width:65ch; color:var(--muted); font-size:.92rem;">Every attachment hosted with this archive, as a plain list of files. No summaries, no search results, no email records — just what you can open, newest first.</p>
-  <div class="docnote">
-    <p style="margin:.2rem 0 .5rem"><strong>Tapping a file hands it to your device, not to this page.</strong> On an iPad, <strong style="display:inline">Share / Save</strong> raises the system share sheet — Save to Files, Open in Books, Mail, Print. That is deliberate: a PDF opened <em>inside</em> this page shows only its first page and can't be scrolled, because the page runs in a sandboxed frame that neither paginates PDFs nor allows downloads.</p>
-    <p style="margin:0">Two other ways to the same place, if the share sheet is blocked on your browser: <strong style="display:inline">long-press the file name</strong> for iPadOS's own menu (Download Linked File, Share, Open in New Tab), or use <strong style="display:inline">Copy address</strong> and paste it into Safari's address bar, where the PDF opens full-screen and paginates normally.</p>
-  </div>
-  <div class="atbar">
-    <input type="search" id="atq" placeholder="Filter files by name — try &quot;receiver&quot;, &quot;depo&quot;, &quot;journal entry&quot;…" aria-label="Filter attachments by file name">
-  </div>
-  <p class="atstat" id="atstat"></p>
-  <ol class="atlist" id="atRows"></ol>
-</section>
+
 
 <section id="library">
   <p class="kicker">Every file, one folder — full text searchable</p>
@@ -974,7 +943,7 @@ async function handOff(url, name, btn, row){
   return false;
 }
 document.addEventListener("click", function(ev){
-  const s = ev.target.closest("button.sharebtn, a.afile, a.doclink");
+  const s = ev.target.closest("button.sharebtn, a.doclink");
   if(s && s.dataset.url){
     ev.preventDefault();
     const row = s.closest(".arow,.drow");
@@ -1309,36 +1278,6 @@ document.querySelectorAll('#library .chips button').forEach(function(b){
   });
 });
 renderLib();
-
-// ——— attachments: only the files that are actually hosted, nothing else ———
-const ATT = LIB.filter(function(r){ return !!r.pub; })
-               .sort(function(a,b){ return (b.d||"").localeCompare(a.d||""); });
-const atRowsEl=document.getElementById("atRows"), atStatEl=document.getElementById("atstat");
-let atQ="";
-function renderAtt(){
-  const needle = atQ.trim().toLowerCase();
-  const list = needle ? ATT.filter(function(r){ return (r.t+" "+(r.desc||"")).toLowerCase().indexOf(needle)>-1; }) : ATT;
-  const bytes = list.reduce(function(n,r){ return n+(r.size||0); }, 0);
-  atStatEl.textContent = list.length+" of "+ATT.length+" files · "+fmtSize(bytes);
-  atRowsEl.innerHTML = list.map(function(r){
-    const url = absUrl(r.pub), fname = fileNameOf(r.pub);
-    const driveHtml1 = driveLinkHtml(r.id, fname);
-    return '<li class="arow">'+
-      '<div class="ah">'+
-        (driveHtml1 || '<a class="afile" href="'+encodeURI(r.pub)+'" data-url="'+esc(url)+'" data-fname="'+esc(fname)+'">'+esc(fname)+'</a>')+
-        '<span class="akind">'+esc(LIBK[r.k]||r.k)+'</span>'+
-        '<span class="ameta">'+fmt(r.d)+' · '+fmtSize(r.size)+'</span>'+
-      '</div>'+
-      '<div class="aacts">'+
-        '<button type="button" class="sharebtn" data-url="'+esc(url)+'" data-fname="'+esc(fname)+'">Share / Save</button>'+
-        '<button type="button" class="copyurl" data-url="'+esc(url)+'">Copy address</button>'+
-      '</div>'+
-      '<div class="docurl"><b>Full address:</b> <span class="url">'+esc(url)+'</span></div>'+
-    '</li>';
-  }).join("") || '<li class="empty">No files match.</li>';
-}
-document.getElementById("atq").addEventListener("input", function(e){ atQ=e.target.value; renderAtt(); });
-renderAtt();
 
 const TL_DOCS={
  "Some parties dismissed":["EX-006"],
