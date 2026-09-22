@@ -107,3 +107,54 @@ This document previously existed only as a stub in the record — a filename and
 - Lot 714 — signature reads approx. "Douglas Peterson" — undated; builder Roy Schlabach
 
 **Why this matters:** several of these names (Demaree, Mullendore, Peterson, Compton) match people still active in the current homeowner group's emails. This is signed, dated evidence that at least some current litigants personally acknowledged, at time of purchase, both the deed restrictions *and specifically* an obligation to fund "retention pond" maintenance as association members — directly relevant to the notice argument at the center of the case. Caveat: it says "retention ponds" generically, not dam safety — there's still room to argue this didn't put anyone on notice of *dam* maintenance/liability specifically, only general pond upkeep.
+
+## Is the $70,000 receiver reserve ever reported as short? (2026-09-22)
+
+Checked every occurrence of "exhausted" (13) and "shortfall" (14) in the full recovered record to see whether either term is ever used about the receiver's $70,000 fee reserve (see "How the Receiver's fee is being paid," above). **None are.** Every hit is one of two unrelated pots of money:
+
+- **The legal retainer**, repeatedly described as "exhausted" by Eastman & Smith in status letters (e.g., Dec. 11, 2023 status report: "This has required a substantial amount of attorney time, which has exhausted the existing retainer. Our accounting department will be sending out a request for a supplemental retainer payment"; similar language recurs through 2025 status reports) — this is the group's legal bill, unrelated to the receiver's court-cost reserve.
+- **The $1M county ARPA construction fund**, described as running a "shortfall" for the Two-Pond repair plan (Receiver's own Motion, quoted in the Long Defendants' objection: "The Receiver acknowledges that the available ARPA funds are inadequate to pay the cost of the Two-Pond Plan... there is a shortfall for construction costs based on funds awarded and encumbered... Any cost overruns would be financed by loan"). This is the fund backstopped by the **Park National Bank loan committed by seven pond-frontage owners** (not the full homeowner group), per the site's own "IV. The Repair" section — and construction finished substantially complete in August 2026 within the available federal funds, so this risk did not materialize.
+
+**Conclusion:** no evidence anywhere in the recovered record that the $70,000 receiver reserve has ever run short, or that homeowners generally (as opposed to the seven loan-committing pond-frontage owners) would be billed if it did. The live, current money exposure is the separate $45,000 vegetation assessment + monthly maintenance assessment mechanism under the Declarations/HOA — not the receiver's fee reserve.
+
+## The other HOAs in the maintenance zone (2026-09-22)
+
+The Sept. 2026 "KCCD Strategy" email describes the shared assessment zone as covering "The Landings, Mallard Point, Woodbury, Waters Edge, and Coventry Court" (thread `1a0c1c42af04e045`). Checked the case record for which of these are actual incorporated HOA entities vs. just neighborhood names:
+
+- **Waters Edge Homeowners Association** — confirmed real, incorporated entity. Named as a defendant in the case caption with its own counsel, Cari Fusco Evans & Mark F. Fisher of Fischer Evans & Robbins Ltd. Referenced repeatedly in deposition testimony (e.g., "the members of the Waters Edge Homeowners Association and their guests" holding harmless language). Per the December 2023 exhibit list (Request for Production response, exhibit item 9), Waters Edge appears to be built under the *same* phase-declaration scheme as the rest of The Landings — "Declaration of Building and Development Restrictions for the Landing Development Phase V, Phase VB, Phase V-C and Phase VI, recorded September 28, 1988" is followed by exhibit item 10, "Waters Edge Phase V plat" — i.e., Waters Edge is Phase V of the same overall development, not a separate subdivision.
+- **Mallard Pointe** — no separate HOA entity name found anywhere in the record. Individual Mallard Pointe owners (Loretta V. Godfrey, Janet L. Schisler, Jerry & Diane Harper, Peggy A. Farmer, and others) appear as named individual defendants in the case caption, not as members sued through a homeowners-association entity. 24 Mallard Pointe owners were dismissed by Judge Kimbler in March 2023.
+- **Coventry Court** and **Woodbury** — appear only in the 2025–2026 maintenance-assessment emails as neighborhood names sharing the assessment zone. No incorporated HOA entity name for either found anywhere in the recovered record (case caption, depositions, or discovery responses).
+
+## Phase VII & VIII — the merger question is not clearly resolved in the record (2026-09-22)
+
+Traced the "Landing Development Phase VII and Phase VIII Property Owners Association, Inc." referenced in Request for Admission No. 24 (see the Long Defendants' RFA responses, `7101543.1`, discovery document). Findings:
+
+**There are at least three differently-named corporate/associational entities in this case, and the record does not clearly reconcile them:**
+
+1. **"The Landings Common Area Association, Inc."** — the entity named in the recorded Declarations as the one owners must join. Confirmed via Rauzi deposition: "the entity is referred to as The Landings Common Area Association, Inc., but the articles have a different name."
+2. **"The Landings Property Owners Association, Inc."** — the entity that took the July 31/Aug. 1, 2007 quitclaim deed to the dam/lake parcel (Parcel No. 66-09675.162), the entity the Sept. 23, 2024 ruling holds owns the dam, and the entity the Ohio Secretary of State certified as cancelled for failure to file a continued-existence statement on March 2, 2015 (exhibit item 25). The court adopted Mullins' "scrivener's error" theory (per Rauzi's Sept. 7, 2023 deposition testimony) to treat #1 and #2 as the same entity despite the name mismatch.
+3. **"The Landing Development Phase VII & VIII, Inc."** / **"The Landing Development Phase VII and Phase VIII Property Owners Association, Inc."** — a *third*, distinctly named entity. Two independent confirmations it's real:
+   - Mullins Bros.' own exhibit list (Request for Production response) lists as trial exhibit #22: "Regulations and Bylaws of The Landing Development Phase VII & VIII, Inc."
+   - **Request for Admission No. 24** asked the Long Defendants to "admit that a true and accurate copy of the Articles of Incorporation for The Landing Development Phase VII and Phase VIII Property Owners Association, Inc. is attached as Exhibit 5." After objecting that the request was "not relevant to any claim or defense," **the Long Defendants admitted it.**
+
+**What's missing:** the archive does not contain Exhibit 5 (the actual Articles of Incorporation) or exhibit item 22 (the Bylaws) — only their titles, from the exhibit list and RFA text. So the incorporation date, registered agent, and stated purpose of entity #3 are unknown from what's recovered so far, and — critically — **the 2024 ruling's misnomer/scrivener's-error fix only addresses the mismatch between entities #1 and #2. It never mentions entity #3 at all.** Whether "The Landing Development Phase VII & VIII, Inc." is: (a) an earlier, superseded name for the same association eventually renamed to #1 or #2; (b) a genuinely separate, still-existing corporation that never merged into anything; or (c) defunct and irrelevant — is not established anywhere in the recovered record. **This is a real open question worth raising with new counsel**, since it's not obvious the court's "it's all one association" reasoning actually accounts for a third differently-named, apparently Phase-VII/VIII-specific corporate entity with its own Articles and Bylaws.
+
+## Development phase / Declaration timeline sourced from discovery (2026-09-22)
+
+From Mullins Bros.' Request for Production exhibit list and the Long Defendants' admitted Requests for Admission (discovery document `7101543.1`):
+
+| Date | Event | Source |
+|---|---|---|
+| Sept. 28, 1988 | Declaration of Building and Development Restrictions recorded for "the Landing Development Phase V, Phase VB, Phase V-C and Phase VI" | Exhibit list item 9 |
+| — | Waters Edge built under Phase V of the same development (not a separate subdivision) | Exhibit list item 10, "Waters Edge Phase V plat" |
+| March 15, 2005 | Warranty Deed, Knox Cattle Company → Mullins Bros., Ltd., recorded | Exhibit list item 6 |
+| Feb. 22–24, 2005 | Phase VII plat (Feb. 24) and Declaration (revised, recorded Feb. 22) | Exhibit list items 12, 27 |
+| March 22, 2005 | Mullins Bros. filed the Phase VII Declaration with the Knox County Recorder, File No. 2005-00002853, Book 935, Page 640 | RFA No. 8 — **admitted** |
+| July 19, 2006 | Phase VIII plat map recorded | Exhibit list item 26 |
+| March 13, 2007 | Mullins Bros. filed the Phase VIII Declaration with the Knox County Recorder, File No. 2007-00002401, Book 1069, Page 118 | RFA No. 11 — **admitted** |
+| July 31/Aug. 1, 2007 | Quitclaim deed, Mullins Bros. → The Landings Property Owners Association, Inc., for the dam/lake parcel | Exhibit list item 23; RFA Nos. 22–23 — **admitted** the deed exists, but Long Defendants deny personal knowledge of the transfer itself |
+| — (undated in record) | Articles of Incorporation, "The Landing Development Phase VII and Phase VIII Property Owners Association, Inc." (Exhibit 5) | RFA No. 24 — **admitted** as a true/accurate copy, date not established from what's recovered |
+| March 2, 2015 | Ohio Secretary of State certifies The Landings Property Owners Association, Inc. as cancelled for failure to file a continued-existence statement | Exhibit list item 25 |
+| Sept. 23, 2024 | Court rules the Landings POA, Inc. (despite being defunct since 2015) owns the dam; Phase VII/VIII owners bound by the Declarations via the "scrivener's error"/misnomer theory | Decision & Entry (see above) |
+
+**Gap:** the Declaration for the earlier phase (V/VB/V-C/VI, 1988) covering Waters Edge is dated, but there's no equivalent found yet for whatever separately governs Mallard Pointe, Coventry Court, or Woodbury — those may predate this development entirely, or may not have ever had a recorded Declaration at all. Worth another discovery pass if this matters (e.g., searching Gmail/the exhibit archive for "Mallard Pointe" + "Declaration" or "plat").
