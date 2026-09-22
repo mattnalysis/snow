@@ -620,6 +620,13 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
         <option value="other">Other filing</option>
       </select>
     </label>
+    <label class="fsel" id="fFilerWrap" hidden>Filed by
+      <select id="fFiler" aria-label="Filter by who filed it">
+        <option value="">All</option>
+        <option value="Long Defendants">Long Defendants</option><option value="Mullins Bros.">Mullins Bros.</option><option value="State &amp; Mullins Bros.">State &amp; Mullins Bros.</option><option value="Multiple parties">Multiple parties</option><option value="Receiver">Receiver</option><option value="Court">Court</option><option value="Eastman &amp; Smith (counsel)">Eastman &amp; Smith (counsel)</option><option value="Non-party (subpoenaed)">Non-party (subpoenaed)</option><option value="Discovery">Discovery</option><option value="Unclear from record">Unclear from record</option>
+      </select>
+    </label>
+    <label class="fsel fcheck"><input type="checkbox" id="fRespOnly"> Responses/replies only</label>
     <label class="fsel">Person
       <select id="fPerson" aria-label="Filter by person"><option value="">All</option></select>
     </label>
@@ -1210,7 +1217,8 @@ function emailTextFor(tid){
   return {text:items[0].x, chars:items[0].x.length};
 }
 
-let onlyDocs=false, subFilter="all", personQ="";
+const FILEMETA={"Summary Judgment for the Reeds \u2014 homeowners dismissed":{filer:"Court",resp:false},"Responses of the Long Defendants to the State's discovery requests":{filer:"Long Defendants",resp:true},"Mullins Bros. responses to Requests for Admission & Production":{filer:"Mullins Bros.",resp:true},"Deposition transcripts \u2014 Steve Mullins (Vol. I & II) and Cloyd Yough":{filer:"Discovery",resp:false},"Long Defendants' Motion for Partial Summary Judgment":{filer:"Long Defendants",resp:false},"Mullins Bros.' Motion for Summary Judgment":{filer:"Mullins Bros.",resp:false},"Long Defendants' Motion for Partial Summary Judgment on Mullins' Crossclaim and Third-Party Complaint":{filer:"Long Defendants",resp:false},"Reply memoranda and additional affidavits \u2014 briefing closes":{filer:"Multiple parties",resp:true},"Reply on setting aside the deed to the POA":{filer:"Long Defendants",resp:true},"Opposition briefs & State's response; Motion to dismiss Crystal Tuel":{filer:"Multiple parties",resp:true},"Supplemental memoranda answering the court's five questions":{filer:"Multiple parties",resp:true},"Responses on 'Question 6' \u2014 the quitclaim set-aside argument":{filer:"State & Mullins Bros.",resp:true},"Motion for appointment of receiver":{filer:"Unclear from record",resp:false},"Receiver's Fourth Interim Report & first fee application":{filer:"Receiver",resp:false},"Notice of Public Meeting \u2014 Aug 20, Woodward Opera House":{filer:"Receiver",resp:false},"Motion of Receiver for Approval of Dam Repair Plan":{filer:"Receiver",resp:false},"Memorandum Contra the Receiver's repair plan + status conference":{filer:"Long Defendants",resp:true},"Motion to Withdraw as Counsel (with proposed Entry)":{filer:"Eastman & Smith (counsel)",resp:false},"Knox Cattle \u2014 State v. The Landings Property Association et al.":{filer:"Multiple parties",resp:false},"Service of filings \u2014 June 2023":{filer:"Multiple parties",resp:false},"Service of filings \u2014 July 2023":{filer:"Multiple parties",resp:false},"Mullins Bros.' produced documents":{filer:"Mullins Bros.",resp:true},"Documents from Kidwell & Cunningham":{filer:"Non-party (subpoenaed)",resp:true},"Service of filings \u2014 January 2024":{filer:"Multiple parties",resp:false},"Journal Entry \u2014 February 2024":{filer:"Court",resp:false},"Journal Entry \u2014 April 2024":{filer:"Court",resp:false},"CHANGE OF JUDGE \u2014 Supreme Court rescinds Kimbler's assignment":{filer:"Court",resp:false},"Interim Order appointing the Receiver":{filer:"Court",resp:false}};
+let onlyDocs=false, subFilter="all", personQ="", filerQ="", respOnly=false;
 const openDocs=new Set(), openEmail=new Set();
 
 R.forEach(r=>{
@@ -1230,6 +1238,9 @@ R.forEach(r=>{
   if(lowti.indexOf("deposition")>-1||lowti.indexOf("depo")>-1||lowti.indexOf("transcript")>-1) r._filingSub="depo";
   else if(lowti.indexOf("summary judgment")>-1||lowti.indexOf("cross-motion")>-1||lowti.indexOf("motion for summary")>-1) r._filingSub="msj";
   else r._filingSub="other";
+  const fm=FILEMETA[r.ti];
+  r._filer = fm ? fm.filer : null;
+  r._resp = fm ? fm.resp : false;
 });
 
 function hits(text,needle,max){
@@ -1249,6 +1260,8 @@ function render(){
   if(filter!=="all") list=list.filter(r=>r.t===filter);
   if(filter==="filing" && subFilter!=="all") list=list.filter(r=>r._filingSub===subFilter);
   if(personQ) list=list.filter(r=>r._hay.indexOf(personQ)>-1);
+  if(filerQ) list=list.filter(r=>r._filer===filerQ);
+  if(respOnly) list=list.filter(r=>r._resp===true);
   if(onlyDocs) list=list.filter(r=>r._docs&&r._docs.length);
   if(topic) list=list.filter(r=>r._tp.indexOf(topic)>-1);
   const needle=q?q.toLowerCase():"";
@@ -1258,6 +1271,8 @@ function render(){
   if(topic) bits.push("topic: "+TNAME[topic]);
   if(personQ) bits.push("person: "+personQ);
   if(filter==="filing"&&subFilter!=="all") bits.push(document.getElementById("fSub").selectedOptions[0].textContent.toLowerCase());
+  if(filerQ) bits.push("filed by: "+filerQ);
+  if(respOnly) bits.push("responses/replies only");
   if(onlyDocs) bits.push("with documents only");
   countEl.textContent = list.length+" of "+R.length+" records"+(bits.length?" · "+bits.join(" · "):"");
   if(!list.length){ rowsEl.innerHTML='<li class="empty">No records match. Try fewer words.</li>'; return; }
@@ -1470,6 +1485,9 @@ document.querySelectorAll('.plink[data-pq]').forEach(function(b){
     document.getElementById("q").value = ""; q = "";
     filter = "all"; document.getElementById("fType").value = "all";
     document.getElementById("fSubWrap").hidden = true;
+    document.getElementById("fFilerWrap").hidden = true;
+    filerQ = ""; document.getElementById("fFiler").value = "";
+    respOnly = false; document.getElementById("fRespOnly").checked = false;
     onlyDocs = false; document.getElementById("fDocsOnly").checked = false;
     topic = null; document.getElementById("fTopic").value = "";
     personQ = term; document.getElementById("fPerson").value = term;
@@ -1489,9 +1507,16 @@ document.getElementById("fTopic").innerHTML += TOPICS.map(function(t){
 document.getElementById("fType").addEventListener("change", function(e){
   filter = e.target.value;
   document.getElementById("fSubWrap").hidden = filter!=="filing";
-  if(filter!=="filing"){ subFilter="all"; document.getElementById("fSub").value="all"; }
+  document.getElementById("fFilerWrap").hidden = filter!=="filing";
+  if(filter!=="filing"){
+    subFilter="all"; document.getElementById("fSub").value="all";
+    filerQ=""; document.getElementById("fFiler").value="";
+    respOnly=false; document.getElementById("fRespOnly").checked=false;
+  }
   render();
 });
+document.getElementById("fFiler").addEventListener("change", function(e){ filerQ=e.target.value; render(); });
+document.getElementById("fRespOnly").addEventListener("change", function(e){ respOnly=e.target.checked; render(); });
 document.getElementById("fSub").addEventListener("change", function(e){ subFilter=e.target.value; render(); });
 document.getElementById("fPerson").addEventListener("change", function(e){ personQ=e.target.value; render(); });
 document.getElementById("fTopic").addEventListener("change", function(e){ topic=e.target.value||null; render(); });
