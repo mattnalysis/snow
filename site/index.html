@@ -305,6 +305,24 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
   .gmore .gmorebody{margin-top:.4rem;font-size:.85rem;color:var(--muted);line-height:1.6;max-width:65ch}
 
 
+  /* ---- costs table ---- */
+  table.costtable{width:100%;border-collapse:collapse;font-size:.85rem;min-width:680px}
+  .costtable th, .costtable td{padding:.55rem .7rem;text-align:left;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  .costtable thead th{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--muted);border-bottom:2px solid var(--line)}
+  .costtable tr.cat-row th{background:var(--panel2);font-family:"Libre Caslon Text",Georgia,serif;font-weight:700;
+    font-size:.88rem;color:var(--accent-deep);padding:.6rem .7rem;border-bottom:1px solid var(--line)}
+  .costtable td.mono{font-family:"IBM Plex Mono",monospace;font-size:.8rem;white-space:nowrap}
+  .cost-status{font-family:"IBM Plex Mono",monospace;font-size:.62rem;letter-spacing:.05em;text-transform:uppercase;
+    padding:.15rem .5rem;border-radius:3px;border:1px solid currentColor;white-space:nowrap;display:inline-block}
+  .cost-status.paid{color:var(--ok)}
+  .cost-status.ongoing{color:var(--accent-deep)}
+  .cost-status.pending{color:var(--warn)}
+  .cost-status.rejected{color:var(--muted)}
+  .cost-status.trial{color:var(--ruling)}
+  .cost-status.historical{color:var(--muted)}
+
+
   /* ---- record filter bar (dropdowns) ---- */
   .filterbar{display:flex;flex-wrap:wrap;gap:.9rem 1.1rem;align-items:end;margin:.9rem 0 .3rem;
     padding:.85rem 1rem;background:var(--panel);border:1px solid var(--line-soft);border-radius:8px}
@@ -357,7 +375,7 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
 <nav aria-label="Site">
   <span class="case">KNOX CO. C.P. NO. 20IN06-0149</span>
   <span class="links">
-    <a href="#brief">Brief</a><a href="#decided">Decided &amp; Open</a><a href="#timeline">Timeline</a><a href="#people">People</a><a href="#questions">Questions</a><a href="#neighborhoods">Neighborhoods</a><a href="#geography">Geography</a><a href="#record">The Record</a><a href="#library">Documents</a><a href="#press">Press</a>
+    <a href="#brief">Brief</a><a href="#decided">Decided &amp; Open</a><a href="#timeline">Timeline</a><a href="#people">People</a><a href="#questions">Questions</a><a href="#neighborhoods">Neighborhoods</a><a href="#costs">Costs</a><a href="#geography">Geography</a><a href="#record">The Record</a><a href="#library">Documents</a><a href="#press">Press</a>
   </span>
 </nav>
 
@@ -521,6 +539,23 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
     <div class="qcard" data-st="open"><div class="qtop"><span class="qq">Who represents us now that Eastman &amp; Smith withdrew?</span><span class="qst">Still open</span></div>
       <p class="qa">Open as of the Sept. 25, 2026 status conference. 23 households signed on to seek substitute counsel, ideally someone already familiar with the case.</p>
       <p class="qsrc">Source: Summary of the Litigation, section V, above.</p></div>
+  
+
+    <div class="qcard" data-st="open"><div class="qtop"><span class="qq">Was Mullins Bros.' $20,000 cost deposit ever actually paid?</span><span class="qst">Still open</span></div>
+      <p class="qa">The Oct. 2024 receivership order required Mullins Bros. to deposit $20,000 with the Clerk of Court within 10 days, toward the action's costs — a separate obligation from the City's $70,000 reserve. Nothing in the recovered record confirms this was actually paid.</p>
+      <p class="qsrc">Source: <a href="#costs">Costs &amp; Who Pays</a>, section B; research/litigation-status-2026-09-21.md.</p></div>
+
+    <div class="qcard" data-st="done"><div class="qtop"><span class="qq">Why weren't the cheaper repair alternatives chosen for the dam itself?</span><span class="qst">Answered</span></div>
+      <p class="qa">The receiver's Sixth Report priced three options: keeping full ODNR regulation ($1,099,750, rejected as by far the costliest with ongoing debt service), a single-pool de-regulated design ($303,525, cheapest to build but highest long-term maintenance since it stays marshy), and the two-pool "Two-Pond" design ($701,525, later $635,200 actual) — chosen because its ongoing maintenance was lowest of the three, despite not being the cheapest to build.</p>
+      <p class="qsrc">Source: <a href="#costs">Costs &amp; Who Pays</a>, section A; Timeline, July 24, 2025.</p></div>
+
+    <div class="qcard" data-st="open"><div class="qtop"><span class="qq">Which maintenance-fee model is actually final — flat $12.23/month, or the tiered $12.08/$17.25 model?</span><span class="qst">Still open</span></div>
+      <p class="qa">Two different draft models exist in the record: a flat $12.23/property/month across all 245 properties (the "Basin 01 (Pond 1A)" model), and an earlier or alternate two-tier version charging condos ~$12.08/month and single-family homes ~$17.25/month based on impervious surface. Nothing recovered so far says which one the receiver will actually put before the court.</p>
+      <p class="qsrc">Source: <a href="#costs">Costs &amp; Who Pays</a>, section D; research/litigation-status-2026-09-21.md.</p></div>
+
+    <div class="qcard" data-st="open"><div class="qtop"><span class="qq">Does the old informal HOA budget get replaced by the new assessments, or run alongside them?</span><span class="qst">Still open</span></div>
+      <p class="qa">Before the receivership, a volunteer group ran an informal HOA on roughly $3,000–$3,500/year (insurance, mowing, accounting) — an order of magnitude smaller than the new dam-driven assessment models. Nothing in the record says whether that older, smaller budget gets absorbed into the new HOA's dues once bylaws are finalized, or continues as a separate line item.</p>
+      <p class="qsrc">Source: <a href="#costs">Costs &amp; Who Pays</a>, section E.</p></div>
   </div>
 
   <p class="qgroup-h">Matt's own questions</p>
@@ -723,6 +758,55 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
   </div>
 </section>
 
+<section id="costs" class="brief">
+  <p class="kicker">Every dollar figure found in the case &middot; updated September 23, 2026</p>
+  <h2>Costs &amp; Who Pays</h2>
+  <p style="max-width:65ch; color:var(--muted); font-size:.92rem;">Every cost mentioned anywhere in the recovered record — repair estimates (chosen and rejected), receivership fees, the group's own legal bills, proposed assessments, a legacy pre-receivership budget, and what's still unresolved with no dollar figure at all. Historical and superseded figures are kept, not dropped, so the full arc is visible. Full sourcing for every row is in <span class="mono">research/litigation-status-2026-09-21.md</span>.</p>
+  <div class="figwrap" style="overflow-x:auto">
+  <table class="costtable">
+    <thead><tr><th>Cost item</th><th>Amount</th><th>Who pays (proposed or actual)</th><th>Status</th></tr></thead>
+    <tbody>
+<tr class="cat-row"><th colspan="4">A. Dam repair — construction alternatives</th></tr>
+<tr><td>2019 early repair estimate</td><td class="mono">$300,000</td><td>Unclear — pre-suit; 4 City Council members recused (conflict of interest)</td><td><span class="cost-status historical">Historical</span></td></tr>
+<tr><td>Alternative 1 — maintain Class I structure</td><td class="mono">$1,099,750.00</td><td>Would have fallen to the POA / residents (long-term financing)</td><td><span class="cost-status rejected">Rejected</span></td></tr>
+<tr><td>Alternative 2 — “Single-Pond” (de-regulate)</td><td class="mono">$303,525.00</td><td>Would have fallen to the POA / residents</td><td><span class="cost-status rejected">Rejected (group's preferred option)</span></td></tr>
+<tr><td>Alternative 3 — “Two-Pond”, initial estimate</td><td class="mono">$701,525.00</td><td>County ARPA award</td><td><span class="cost-status historical">Superseded by actual cost</span></td></tr>
+<tr><td>Two-Pond repair — actual/final cost</td><td class="mono">$635,200.00</td><td>County ARPA award (~$1M)</td><td><span class="cost-status paid">Paid — construction complete</span></td></tr>
+<tr><td>Interim risk-reduction (IRRM)</td><td class="mono">~$200,000</td><td>City of Mount Vernon (ARPA funds)</td><td><span class="cost-status paid">Paid — complete (2025)</span></td></tr>
+<tr><td>Feared change-order risk (Two-Pond)</td><td class="mono">up to $200,000</td><td>Would have fallen on the group</td><td><span class="cost-status rejected">Did not materialize</span></td></tr>
+<tr class="cat-row"><th colspan="4">B. Receivership &amp; court-ordered costs</th></tr>
+<tr><td>Receiver fee reserve</td><td class="mono">$70,000</td><td>City of Mount Vernon</td><td><span class="cost-status ongoing">Ongoing — ~49% drawn by first application</span></td></tr>
+<tr><td>Mullins Bros.' cost deposit (ordered)</td><td class="mono">$20,000</td><td>Mullins Bros., Ltd. — ordered to Clerk of Court</td><td><span class="cost-status pending">Ordered Oct. 2024 — payment unconfirmed</span></td></tr>
+<tr><td>Receiver's surety bond</td><td class="mono">$100,000</td><td>Receiver (Jack Harris) — his own bond</td><td><span class="cost-status paid">Posted — not billed to homeowners</span></td></tr>
+<tr><td>Receiver's 1st fee application (Harris)</td><td class="mono">$17,704.50</td><td>Paid from the $70,000 City reserve</td><td><span class="cost-status paid">Approved</span></td></tr>
+<tr><td>Receiver's counsel 1st fee application</td><td class="mono">$16,500.42</td><td>Paid from the $70,000 City reserve</td><td><span class="cost-status paid">Approved</span></td></tr>
+<tr class="cat-row"><th colspan="4">C. Homeowner group's own legal fees</th></tr>
+<tr><td>Co-counsel Kyle Tucker's rate</td><td class="mono">$250/hour</td><td>Homeowner group (pooled retainer)</td><td><span class="cost-status historical">Billed through Sept. 2026 withdrawal</span></td></tr>
+<tr><td>Disclosed attorney rate range</td><td class="mono">$135–$400/hour</td><td>Homeowner group (pooled retainer)</td><td><span class="cost-status historical">From the 2023 engagement letter</span></td></tr>
+<tr><td>Group's collective monthly legal spend (2024)</td><td class="mono">~$850/month</td><td>Homeowner group</td><td><span class="cost-status historical">One member's own estimate, Feb. 2024</span></td></tr>
+<tr><td>Retainer replenishment (Sept. 2026)</td><td class="mono">$800.00</td><td>Homeowner group</td><td><span class="cost-status paid">Requested; $800 refunded on withdrawal</span></td></tr>
+<tr><td>House-sale substitution fee</td><td class="mono">$750</td><td>Individual seller/buyer</td><td><span class="cost-status ongoing">Per-transaction, recurs on any sale</span></td></tr>
+<tr><td>Early “surprise” legal bill (2020–21)</td><td class="mono">$2,000</td><td>Informal HOA (pre-Eastman &amp; Smith)</td><td><span class="cost-status historical">Resolved</span></td></tr>
+<tr class="cat-row"><th colspan="4">D. Assessments proposed under the receivership (pending court approval)</th></tr>
+<tr><td>One-time vegetation-clearing assessment</td><td class="mono">$45,000 total (~$175/lot, ~240 parcels)</td><td>Phase VII/VIII lot owners only</td><td><span class="cost-status pending">Proposed — not yet court-approved</span></td></tr>
+<tr><td>Ongoing maintenance — flat-rate model</td><td class="mono">$36,000/yr = $147/property/yr ($12.23/mo), 245 properties</td><td>All six areas, via City utility bill</td><td><span class="cost-status pending">Proposed — City/receiver still refining who's assessed</span></td></tr>
+<tr><td>Ongoing maintenance — tiered model (alt. draft)</td><td class="mono">~$12.08/mo (condo) / ~$17.25/mo (single-family)</td><td>Same 245 properties, by density tier</td><td><span class="cost-status pending">Proposed — unclear if current or superseded</span></td></tr>
+<tr><td>25-year lifecycle maintenance total</td><td class="mono">$899,195 ($3,670/property)</td><td>Same 245-property base</td><td><span class="cost-status pending">Same model, long-term total</span></td></tr>
+<tr class="cat-row"><th colspan="4">E. Legacy — informal HOA budget before the receivership (2018–2022)</th></tr>
+<tr><td>Informal HOA average annual spending</td><td class="mono">$3,498/yr</td><td>Informal, volunteer-run HOA</td><td><span class="cost-status historical">Historical — superseded</span></td></tr>
+<tr><td>2022 typical operating budget</td><td class="mono">$3,047/yr ($253.92/mo)</td><td>Informal HOA (insurance, mowing, accounting, etc.)</td><td><span class="cost-status historical">Historical — superseded</span></td></tr>
+<tr><td>Original 2001–2007 deed-restriction fee</td><td class="mono">$200.00/yr</td><td>Original lot buyers, per signed acknowledgment</td><td><span class="cost-status historical">Historical baseline</span></td></tr>
+<tr class="cat-row"><th colspan="4">F. Reserved for trial / unresolved — no dollar figure exists yet</th></tr>
+<tr><td>Indemnity &amp; contribution, injunctive relief, WPCA, breach of Declarations</td><td class="mono">Not set</td><td>Unresolved</td><td><span class="cost-status trial">Reserved for trial</span></td></tr>
+<tr><td>State's potential fines / costs</td><td class="mono">Not set</td><td>Unresolved</td><td><span class="cost-status trial">Unresolved</span></td></tr>
+<tr><td>Individual dismissal-motion costs (if unrepresented)</td><td class="mono">Unknown</td><td>Individual owner, if it comes to that</td><td><span class="cost-status trial">Contingent</span></td></tr>
+<tr><td>Insurance defense costs</td><td class="mono">Unknown</td><td>Currently the group; insurer if the coverage dispute resolves favorably</td><td><span class="cost-status trial">Unresolved — State Farm dispute, Clarks' test case</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="docnote" style="margin-top:1.2rem"><strong>Reading the status column.</strong> <span class="cost-status paid">Paid</span> means the money actually moved and the matter is closed. <span class="cost-status ongoing">Ongoing</span> means a recurring or still-running obligation. <span class="cost-status pending">Pending</span> means proposed but not yet court-approved or finalized. <span class="cost-status rejected">Rejected</span> means considered and not chosen. <span class="cost-status trial">Reserved for trial</span> means no dollar figure exists yet because the underlying liability hasn't been decided. <span class="cost-status historical">Historical</span> means superseded by later figures, kept here for the full record.</p>
+</section>
+
 <section id="geography" class="brief">
   <p class="kicker">Streets, addresses &amp; terms · sourced from court filings</p>
   <h2>Geography &amp; Definitions</h2>
@@ -854,9 +938,9 @@ const TL = [
  {d:"1945", t:"Dam constructed", b:"Knox Cattle Company builds the earthen embankment on Yauger Road, impounding the lake that The Landings would later surround."},
  {d:"2008–2020", t:"ODNR documents violations", b:"Inspections in 2008, 2010, 2015 and 2020 find safety violations. After homes are approved below the dam, ODNR reclassifies it Class I (high hazard) — a spec it was never built to meet."},
  {d:"2015", t:"The POA lapses", b:"The Landings Property Owners Association, Inc. has its articles of incorporation cancelled — the corporation that will later be declared the dam's owner is defunct."},
- {d:"2019", t:"Ownership question surfaces", b:"The issue arises during Mount Vernon's stormwater-utility discussions: nobody will claim the dam."},
+ {d:"2019", t:"Ownership question surfaces", b:"The issue arises during Mount Vernon's stormwater-utility discussions: nobody will claim the dam. A July 2019 Knox Pages article puts an early repair estimate at $300,000 and reports four City Council members recusing themselves from discussing it, being affected property owners themselves."},
  {d:"Jun 2020", t:"State of Ohio files suit", b:"At ODNR's request, AG Dave Yost sues in Knox County Common Pleas (20IN06-0149) to declare the dam's legal owner. The City agrees to interim risk-reduction measures.", c:"rul", tag:"Filed"},
- {d:"Jul 2022", t:"Public meetings at the Woodward", b:"Judge Wetzel presides over public meetings presenting repair options; residents recall three alternatives, including removing the dam."},
+ {d:"Jul 2022", t:"Public meetings at the Woodward", b:"Judge Wetzel presides over public meetings presenting repair options; residents recall three alternatives, including removing the dam. The same month, a July 26, 2022 Journal Entry orders Mullins Bros. to identify watershed-basin property owners who contribute water flow to the lake and dam, for possible joinder as necessary parties — never followed up on; see <a href=\"#neighborhoods\">Neighborhoods</a>."},
  {d:"~2022", t:"Wetzel recuses; Kimbler appointed", b:"Judge Wetzel steps aside over a conflict (his wife worked at an involved property); visiting Judge James Kimbler takes the case."},
  {d:"Mar 2023", t:"Some parties dismissed", b:"Kimbler dismisses Waters Edge, Delano Asset Management and 24 Mallard Pointe owners — and signals Phase VII/VIII owners may be added. Mullins Bros.' third-party claims pull the 68 Landings lots in; the group retains Eastman & Smith."},
  {d:"Fall 2023", t:"Discovery", b:"Requests for admission/production exchanged; depositions of Steve Mullins (twice), attorney Bob Rauzi, and Cloyd Yough."},
@@ -866,17 +950,18 @@ const TL = [
  {d:"Jun 30 2024", t:"The case goes back to Judge Wetzel", b:"The Supreme Court of Ohio rescinds visiting Judge Kimbler's assignment after Wetzel represents that his conflict of interest “has abated.” The group reacts hard — Marlow notes Kimbler was deciding on dam law while Wetzel leaned toward mediation, and calls the switch political; Long floats an appeal. Three months later Wetzel issues the ownership ruling.", c:"rul", tag:"Turning point"},
  {d:"Jul 22 2024", t:"Service defects & ARPA deadline", b:"Wetzel (back on the case) orders the State to perfect service on the nonprofit POA; flags ~$900k in county ARPA funds that must be encumbered by year-end; floats a receivership. Days later, every Phase VII/VIII owner is ordered to file title-policy schedules."},
  {d:"Sep 23 2024", t:"THE OWNERSHIP RULING", b:"Decision & Entry on partial summary judgment: homeowners individually do not own the dam; the defunct Landings POA does; Phase VII/VIII owners are bound by the Declarations; “the lake” includes the dam; who pays is left for trial.", c:"rul", tag:"Ruling"},
- {d:"Oct 4 2024", t:"Receiver appointed", b:"Jack Harris of Intercept Management Corp. is appointed receiver for the POA with seven ordered tasks — encumber the ARPA money, fix the dam, stand up an HOA, and determine assessments on the lot owners.", c:"rul", tag:"Order"},
+ {d:"Oct 4 2024", t:"Receiver appointed", b:"Jack Harris of Intercept Management Corp. is appointed receiver for the POA with seven ordered tasks — encumber the ARPA money, fix the dam, stand up an HOA, and determine assessments on the lot owners. The same order sets three distinct dollar figures: the City must reserve $70,000 for receiver fees; Mullins Bros. must deposit $20,000 with the Clerk of Court toward this action’s costs; and Harris must post a $100,000 surety bond — see <a href=\"#costs\">Costs &amp; Who Pays</a>.", c:"rul", tag:"Order"},
  {d:"Dec 2024", t:"City takes the lead on IRRM", b:"City issues an RFQ (six responses) and commits to a time-and-materials contract by Dec 31 so the federal funds aren't lost. Judge signals interest in a broader pool of payers."},
  {d:"Mar 2025", t:"AK Hydro hired", b:"Receiver selects AK Hydro (~$200k, half of Stantec's price) for engineering; ODNR asks that work start after July 1. Trees removed by Mar 31; only one cut of the dam needed."},
- {d:"Jul 24 2025", t:"Three options priced — Option 3 recommended", b:"Receiver's Sixth Report prices three cures. Option 3 (~$710k) fits within ARPA funds and shrinks capacity below 15 acre-feet — removing ODNR jurisdiction entirely.", c:"good", tag:"Good news"},
+  {d:"May 28 2025", t:"Receiver’s first fee application", b:"Jack Harris and his counsel (Aaron Firstenberger) file the first interim request for payment from the $70,000 City reserve: $17,704.50 for the receiver’s own 107.3 hours, plus $16,500.42 for his counsel — $34,204.92 combined, roughly 49% of the entire reserve in about seven months.", tag:"Fee application"},
+ {d:"Jul 24 2025", t:"Three options priced — Option 3 recommended", b:"Receiver’s Sixth Report prices three cures: Alternative 1 (maintain Class I status) at $1,099,750 — by far the most expensive, with debt service falling on the POA/residents; Alternative 2 (single pool, de-regulated) at $303,525 — cheapest to build but the highest ongoing maintenance, being mostly marsh; and Alternative 3 (“Two-Pond,” two pools and a causeway) at $701,525 — fits within ARPA funds, shrinks capacity below 15 acre-feet, and has the lowest ongoing maintenance of the three. The receiver recommends Alternative 3.", c:"good", tag:"Good news"},
  {d:"Aug 20 2025", t:"Public meeting, Woodward Opera House", b:"Options presented publicly; Harris recommends Option 3. Proposed long-term maintenance: City-run, $14–19/month per household across the permitted zone. Group consensus is polled by email."},
  {d:"Oct 2025", t:"Costs rise; plan becomes 'Two-Pond'", b:"Option 3 estimates increase; the receiver moves for approval of a two-pond repair plan. Separately, State Farm declines to confirm coverage for homeowners' defense claims."},
  {d:"Oct 31 2025", t:"Group opposes Two-Pond plan", b:"Chappelear files a memorandum contra, arguing the Single-Pond option costs hundreds of thousands less than available funds and that change-order risk (~$200k) would fall on the group. Court orders a supplemental engineering report on flood risk."},
  {d:"Nov 12 2025", t:"Court approves the Two-Pond Option", b:"Relying on AK Hydro's flood-risk opinion, Wetzel blesses the more expensive plan over the group's objection. Unforeseen-condition costs to be addressed if they arise.", c:"rul", tag:"Ruling"},
  {d:"Apr 26 2026", t:"Consensus sought on final deal", b:"Via Jeff Harris's working group: county ARPA $1M covers construction; Park National Bank loan (seven frontage owners as borrowers) backstops any shortfall; ~$30k/yr maintenance split across ~200 parcels ($150–200/yr on water bills). Silence counts as assent."},
  {d:"Jun–Jul 2026", t:"Construction ahead of schedule", b:"Haynes Construction runs two days ahead; work due end of July, seeding in September. Maintenance-consent letters mistakenly sent to litigation-group members — counsel: do not sign."},
- {d:"Aug 2026", t:"Substantially complete", b:"Dam remediation finishes within the federal funds. ODNR to inspect and eventually sign the project over to the POA. Maintenance plan and assessments become the live issue.", c:"good", tag:"Complete"},
+ {d:"Aug 2026", t:"Substantially complete", b:"Dam remediation finishes within the federal funds — the Two-Pond Plan’s final cost lands at $635,200, about $66,325 under the receiver’s own funding estimate. ODNR to inspect and eventually sign the project over to the POA. Maintenance plan and assessments become the live issue.", c:"good", tag:"Complete"},
  {d:"Sep 8 2026", t:"Eastman & Smith terminates representation", b:"Citing lack of direction from the group and unpaid fees, the firm ends the engagement. $800 retainer refunded. Strong advice: hire new counsel now — assessments motion and remaining trial issues are coming.", c:"rul", tag:"Ruling era ends"},
  {d:"Sep 9–10 2026", t:"'Legal Representation Reboot'", b:"Mark Long polls the group on preserving counsel; a six-member owner council (Long, Marlow, Rhoades, Belcher, Goodrich, Varughese) forms to work HOA bylaws and assessments with the receiver. Varughese calls for an all-owners information meeting; Matt asks for a weekend virtual meeting."},
  {d:"Sep 14 2026", t:"Motion to Withdraw filed; group seeks new counsel", b:"Eastman & Smith files its Motion to Withdraw as Counsel with the court. Mark Long circulates the official list — 23 households, the Snows included, want substitute representation, ideally an attorney already in the case, before the Sept. 25 status conference.", c:"rul", tag:"Now"},
