@@ -66,3 +66,17 @@ Separately, the "Phase VII & VIII Legal Representation Reboot" thread (`1a088b5c
 ## No new lawsuit found
 
 A thorough Gmail search (today's mail, opposing counsel, AG's office, court/docket senders) on 2026-09-21 turned up **no new lawsuit filed that day**. If a new suit is confirmed later, it should be added here with its source.
+
+## Is the accounting / receiver's fees transparent and reported? (2026-09-22)
+
+**Formal mechanism — real:**
+- Interim Reports and Fee/Cost Applications are filed with the court (public docket) and forwarded to the full homeowner group by Eastman & Smith the same day, per email practice (e.g., the Fourth Interim Report + First Interim Application for Fees and Costs, filed 2025-05-28, went out to the full distribution list that afternoon — Gmail thread `1971905d8a1d62fe`).
+- Fee applications require **court approval** before funds are released from the $70,000 reserve (see the appointment-order excerpt above) — a judicial check, not an honor system.
+
+**In practice — a documented, ongoing complaint, not resolved:**
+- When the May 2025 fee application went out, Matt asked for "some interpretation or summary instead of just documents" (thread `1971905d8a1d62fe`).
+- Vince Byrd (Cherup), same thread, same week: *"I've tried for months to get a summary and some indication as when this will be resolved. All we get is legal jargon with no end in sight."*
+- Chappelear's response pattern: promises a **verbal** summary "after the next status conference," not a written accounting. No evidence found that an itemized breakdown of the $70k reserve's actual draw-down was ever circulated.
+- Legal wrinkle limiting homeowners' leverage: Chappelear's termination letter states the receiver **"is not a fiduciary with any duties to the lot owners."** His accountability runs to the court, not directly to the homeowners — they can't independently compel an accounting from him; only the court can.
+
+**Gap:** no dollar figures found anywhere in the recovered record for (a) the amount requested in the first fee application, or (b) the current balance/draw-down of the $70,000 reserve. The Fourth Interim Report itself (project-status narrative) has no financial figures; the companion Fee/Cost Application document that would have them was forwarded by email but isn't among the documents recovered with readable text — worth another attachment-recovery pass if this number matters later.
