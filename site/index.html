@@ -266,6 +266,28 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
     cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px;font-family:inherit}
 
 
+  /* ---- outstanding questions ---- */
+  .qgroup-h{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent-deep);margin:2.2rem 0 .3rem}
+  .qgroup-h:first-child{margin-top:1.2rem}
+  .qgroup-note{font-size:.86rem;color:var(--muted);margin:0 0 .8rem;max-width:65ch}
+  .qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:.8rem;margin-top:.5rem}
+  .qcard{background:var(--panel);border:1px solid var(--line-soft);border-left:4px solid var(--accent);
+    border-radius:6px;padding:.9rem 1.05rem;display:flex;flex-direction:column;gap:.4rem}
+  .qcard[data-st="open"]{border-left-color:var(--ruling)}
+  .qcard[data-st="done"]{border-left-color:var(--ok)}
+  .qcard[data-st="disputed"]{border-left-color:var(--warn)}
+  .qcard .qtop{display:flex;justify-content:space-between;gap:.6rem;align-items:baseline}
+  .qcard .qq{font-weight:600;font-size:.95rem;line-height:1.4}
+  .qcard .qst{font-family:"IBM Plex Mono",monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+    white-space:nowrap;flex:none}
+  .qcard[data-st="open"] .qst{color:var(--ruling)}
+  .qcard[data-st="done"] .qst{color:var(--ok)}
+  .qcard[data-st="disputed"] .qst{color:var(--warn)}
+  .qcard .qa{font-size:.87rem;color:var(--ink);line-height:1.55}
+  .qcard .qsrc{font-size:.74rem;color:var(--muted);font-style:italic}
+
+
   /* ---- record filter bar (dropdowns) ---- */
   .filterbar{display:flex;flex-wrap:wrap;gap:.9rem 1.1rem;align-items:end;margin:.9rem 0 .3rem;
     padding:.85rem 1rem;background:var(--panel);border:1px solid var(--line-soft);border-radius:8px}
@@ -318,7 +340,7 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
 <nav aria-label="Site">
   <span class="case">KNOX CO. C.P. NO. 20IN06-0149</span>
   <span class="links">
-    <a href="#brief">Brief</a><a href="#decided">Decided &amp; Open</a><a href="#timeline">Timeline</a><a href="#people">People</a><a href="#record">The Record</a><a href="#library">Documents</a><a href="#press">Press</a>
+    <a href="#brief">Brief</a><a href="#decided">Decided &amp; Open</a><a href="#timeline">Timeline</a><a href="#people">People</a><a href="#questions">Questions</a><a href="#record">The Record</a><a href="#library">Documents</a><a href="#press">Press</a>
   </span>
 </nav>
 
@@ -434,6 +456,75 @@ footer{border-top:1px solid var(--line); margin-top:4rem; padding:1.5rem 0 0; fo
   </div>
 
   <p style="color:var(--muted); font-size:.88rem;">Bottom line: nothing more is expected to be litigated about <em>what happens to the dam</em> — that fight is over and built. What remains is <em>who governs, who pays, and how everyone gets out</em>: bylaws, assessments, withdrawal/substitution of counsel, and the reserved claims that stand between the owners and dismissal.</p>
+</section>
+
+<section id="questions" class="brief">
+  <p class="kicker">What's still unanswered · updated September 22, 2026</p>
+  <h2>Outstanding Questions</h2>
+  <p style="max-width:65ch; color:var(--muted); font-size:.92rem;">Two lists: questions about the case itself, and Matt's own questions that came up along the way. Each is marked <strong>answered</strong>, <strong>disputed</strong> (the group disagrees), or <strong>still open</strong> — with the source for the answer, so it can be checked. This isn't a complete list of everything unresolved in the litigation; it's the questions that have actually come up and been chased down.</p>
+
+  <p class="qgroup-h">The case</p>
+  <div class="qgrid">
+    <div class="qcard" data-st="done"><div class="qtop"><span class="qq">Is there still an active lawsuit against us?</span><span class="qst">Answered</span></div>
+      <p class="qa">Yes. The case remains pending and every Phase VII/VIII owner is still a defendant — the court has never entered a dismissal for any of them, even after finding they don't individually own the dam.</p>
+      <p class="qsrc">Source: Decided &amp; Open, section A, above.</p></div>
+
+    <div class="qcard" data-st="done"><div class="qtop"><span class="qq">Who pays for the receiver — could we be on the hook if the money runs out?</span><span class="qst">Answered</span></div>
+      <p class="qa">The City set aside a $70,000 reserve, treated as a court cost. Checked every "exhausted"/"shortfall" reference in the full record (27 total) — none refers to that reserve running short. Those terms refer to the group's own legal retainer, and separately to the $1M ARPA construction fund (backstopped by a Park National Bank loan from seven pond-frontage owners, not the whole group) — and construction finished under the available federal funds regardless.</p>
+      <p class="qsrc">Source: research/litigation-status-2026-09-21.md, "Is the $70,000 receiver reserve ever reported as short?" (2026-09-22).</p></div>
+
+    <div class="qcard" data-st="done"><div class="qtop"><span class="qq">Why are we bound by "The Landings Common Area Association" when the dam deed names a different corporation?</span><span class="qst">Answered</span></div>
+      <p class="qa">The court adopted a "scrivener's error" theory: drafting attorney Robert Rauzi testified in 2023 the name mismatch was his own drafting mistake, correctable in equity. The court agreed a year later, treating both names as the same entity.</p>
+      <p class="qsrc">Source: Decided &amp; Open, section B, "Where the misnomer finding came from."</p></div>
+
+    <div class="qcard" data-st="open"><div class="qtop"><span class="qq">What is "The Landing Development Phase VII &amp; VIII, Inc." — a third, differently-named entity — and how does it relate to the other two?</span><span class="qst">Still open</span></div>
+      <p class="qa">Confirmed real: Mullins' own exhibit list cites its Regulations and Bylaws, and the Long Defendants admitted (Request for Admission No. 24) that Exhibit 5 is a genuine copy of its Articles of Incorporation. But the court's 2024 misnomer ruling never mentions this entity at all — its incorporation date and actual relationship to the Common Area Association and the POA aren't established in anything recovered so far.</p>
+      <p class="qsrc">Source: research/litigation-status-2026-09-21.md, "Phase VII &amp; VIII — the merger question is not clearly resolved" (2026-09-22).</p></div>
+
+    <div class="qcard" data-st="done"><div class="qtop"><span class="qq">The POA never had directors, members, or bylaws — can the 2007 deed to it be set aside?</span><span class="qst">Answered (unfavorably)</span></div>
+      <p class="qa">The Long Defendants argued yes in a March 2024 supplemental memo — Steve Mullins ran the "corporation" out of his own bank account, in the memo's words, as "his personal piggy bank," with no directors ever appointed. The Sept. 2024 ruling implicitly rejected this by leaving the POA as owner anyway; the court's own reasoning for that specific rejection hasn't turned up in anything recovered yet.</p>
+      <p class="qsrc">Source: research/litigation-status-2026-09-21.md, "Did we ever get answers for these?" (2026-09-22).</p></div>
+
+    <div class="qcard" data-st="done"><div class="qtop"><span class="qq">Could the case instead wind up the defunct corporation and hand the dam to the county or someone else?</span><span class="qst">Answered</span></div>
+      <p class="qa">No. A formal R.C. 1702.50 winding-up action was never filed, and the Long Defendants' own March 2024 analysis concluded no one has standing to bring one (the "corporation" has never had directors, members, or creditors) and Knox County has no jurisdiction over it (no local office).</p>
+      <p class="qsrc">Source: research/litigation-status-2026-09-21.md, "Did we ever get answers for these?" (2026-09-22).</p></div>
+
+    <div class="qcard" data-st="disputed"><div class="qtop"><span class="qq">Do we need a lawyer for the $45,000 vegetation assessment and monthly maintenance fee?</span><span class="qst">Disputed</span></div>
+      <p class="qa">The group itself disagrees. Alex Varughese: it's HOA housekeeping, "we will not need legal representation for this part." Chappelear's termination letter: it's a court filing with a two-week response deadline, and the receiver "is not a fiduciary… if you rely upon him, you do so at your peril." Unresolved as of the Sept. 25, 2026 status conference.</p>
+      <p class="qsrc">Source: Decided &amp; Open, section D, "Open disagreement within the group."</p></div>
+
+    <div class="qcard" data-st="open"><div class="qtop"><span class="qq">Will homeowners/umbrella insurance cover any of this?</span><span class="qst">Still open</span></div>
+      <p class="qa">State Farm has not agreed the dam claims are covered under homeowners/umbrella policies (the Clarks are the test case). No carrier is currently defending the group.</p>
+      <p class="qsrc">Source: Decided &amp; Open, section C, "Insurance."</p></div>
+
+    <div class="qcard" data-st="open"><div class="qtop"><span class="qq">What are the other neighborhoods in the maintenance zone, and are they separately incorporated HOAs?</span><span class="qst">Partly open</span></div>
+      <p class="qa">Waters Edge Homeowners Association is confirmed real and separately incorporated — built as Phase V of the same overall development. No incorporated HOA entity turned up anywhere in the record for Mallard Pointe, Coventry Court, or Woodbury; they may just be informal names for parts of the assessment zone.</p>
+      <p class="qsrc">Source: research/litigation-status-2026-09-21.md, "The other HOAs in the maintenance zone" (2026-09-22).</p></div>
+
+    <div class="qcard" data-st="open"><div class="qtop"><span class="qq">Who represents us now that Eastman &amp; Smith withdrew?</span><span class="qst">Still open</span></div>
+      <p class="qa">Open as of the Sept. 25, 2026 status conference. 23 households signed on to seek substitute counsel, ideally someone already familiar with the case.</p>
+      <p class="qsrc">Source: Summary of the Litigation, section V, above.</p></div>
+  </div>
+
+  <p class="qgroup-h">Matt's own questions</p>
+  <p class="qgroup-note">These are Matt's, not the case's official record — logged here because they came up in the group's own emails and deserve tracking like anything else.</p>
+  <div class="qgrid">
+    <div class="qcard" data-st="open"><div class="qtop"><span class="qq">"What if we're not okay with the maintenance-assessment plan — what's the path?"</span><span class="qst">Still open</span></div>
+      <p class="qa">Asked directly in reply to Receiver Jack Harris's April 2026 consensus-seeking email about the Two-Pond plan and assessments. No response to this specific question has turned up in the thread recovered so far.</p>
+      <p class="qsrc">Source: Gmail thread, "Landings Development Phases VII &amp; VIII - Consensus sought," April 2026.</p></div>
+
+    <div class="qcard" data-st="done"><div class="qtop"><span class="qq">Did we ever get real answers to the 5 questions the court posed in Feb. 2024?</span><span class="qst">Answered</span></div>
+      <p class="qa">Yes — see "The POA never had directors…" and "Could the case instead wind up the defunct corporation…" above. The Sept. 2024 ruling answered them by implication (appointing a receiver instead of pursuing either path), though it never spelled out its reasoning on the deed-avoidance argument specifically.</p>
+      <p class="qsrc">Source: research/litigation-status-2026-09-21.md, "Did we ever get answers for these?" (2026-09-22).</p></div>
+
+    <div class="qcard" data-st="open"><div class="qtop"><span class="qq">Brian Ball told me he was intentionally dragging this out to cost us more — is that true?</span><span class="qst">Unverified</span></div>
+      <p class="qa">Ball's forced resignation as City Engineer (May 2026) is independently reported by Knox Pages. The motive he's alleged to have described in a private conversation with Matt has no corroboration anywhere in the written record.</p>
+      <p class="qsrc">Source: People Involved, "Brian Ball," above.</p></div>
+
+    <div class="qcard" data-st="done"><div class="qtop"><span class="qq">Can I sell my house and be done with this case?</span><span class="qst">Answered</span></div>
+      <p class="qa">No — selling doesn't remove an owner from the case. It takes a court-approved substitution of the buyer as the new defendant.</p>
+      <p class="qsrc">Source: Decided &amp; Open, section A, above.</p></div>
+  </div>
 </section>
 
 <section id="timeline">
