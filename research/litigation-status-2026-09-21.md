@@ -124,6 +124,80 @@ Matt's question — if the Landings POA (bound only by Phase VII/VIII's Declarat
 
 **Even the group's own engineering summary flags the allocation as unresolved**, listing as open questions: "Why 245 units are included in the cost allocation?", "Does every property receive equal benefit?", "Should condos pay the same as single-family homes?" — the same tension Chappelear separately raised about the vegetation assessment (should lakefront owners pay more?). Nobody — not the court, not the receiver, not the group itself — has actually reconciled the ownership theory with the payment theory. **Correction to prior figures:** the parcel count should read **245**, not "~200," and the per-property costs are **$147/year / $12.23/month** per this model (the earlier "$14-19/month" figure appears to be a different, less refined estimate from an earlier point in the negotiation — worth treating the $12.23/mo figure as the more current one, sourced to the Aug. 13, 2026 utility-fee model specifically).
 
+## Every dollar figure found in the case, by category (2026-09-23)
+
+Full sweep of every distinct dollar amount in the recovered archive, for the site's new Costs table. Organized by category with source and payment status. Historical/superseded figures are kept, not discarded, since the request was for *every* cost mentioned — the table on the site marks status accordingly.
+
+### A. Dam repair — the three permanent alternatives (Receiver's Sixth Interim Report, filed ~July 24, 2025)
+
+Per the report itself: "In the Fifth Interim Report of Receiver, the Receiver detailed three alternatives to permanently cure the condition of the existing dam."
+
+| Alternative | Cost | Description | Outcome |
+|---|---|---|---|
+| 1 — maintain Class I structure | **$1,099,750.00** | Keeps the dam under full ODNR regulation; "by far the most expensive," would need long-term financing beyond ARPA funds, debt service falling on "the residents and the Property Owners Association in some form or fashion" | **Rejected** |
+| 2 — de-regulate, single pool ("Single-Pond") | **$303,525.00** | Reduces height/storage below 15 acre-feet, single pool, lowered floor | **Rejected** despite being cheapest to build — "ongoing maintenance costs would be greater... mostly associated with mowing and care for what would often be a marshy area" |
+| 3 — two pools + causeway ("Two-Pond") | **$701,525.00** initial estimate | Lower pool confined by the dam embankment, upper pool by new causeway; "ongoing maintenance costs would be less than the other two alternatives" | **Selected** (court approval Nov. 12, 2025) |
+
+The Long Defendants (per their Oct. 31, 2025 memorandum contra) preferred Alternative 2 (Single-Pond) specifically for its lower construction cost, warning of up to $200,000 in change-order risk on the more expensive Two-Pond option. The court sided with the receiver's engineering judgment (AK Hydro's flood-risk opinion) over the cost objection.
+
+**Actual/adjusted Two-Pond cost, per the Receiver's later motion:** $635,200.00 — "$66,325 lower than the amount the Receiver had said was within the ARPA funds available" ($701,525 − $66,325 = $635,200, confirming these are the same figure at different drafting stages). Construction (Haynes Construction) finished substantially complete by August 2026, **paid entirely from the county's ARPA award** — no construction shortfall materialized, so the Park National Bank loan backstop (seven pond-frontage owners) was never drawn on.
+
+**Earliest estimate on record:** a July 23, 2019 Knox Pages article — before the lawsuit was even filed (June 2020) — reported **$300,000** in dam repairs, with four Mount Vernon council members (themselves affected property owners) recused from deliberating due to conflict of interest.
+
+**Interim risk-reduction measures (IRRM), separate from the permanent repair:** AK Hydro was hired for roughly **$200,000** (about half of Stantec's rejected bid, reported as ~$400,000), paid by the **City** using already-encumbered ARPA funds. A companion construction-funding note (source document unclear — worth another pass if it matters) references **$634,500** encumbered to Haynes Construction, an estimated **$350,000** cost for an unspecified phase, and a resulting **$284,500** balance of encumbered ARPA funds — these three figures are internally consistent ($634,500 − $350,000 = $284,500) but their exact relationship to the IRRM vs. the permanent Two-Pond work isn't fully resolved in what's been read so far.
+
+### B. Receivership and court-ordered costs (Interim Order appointing Jack Harris, Oct. 3–4, 2024)
+
+- **$70,000** — City of Mount Vernon's reserve fund for receiver fees/expenses, released only on court-approved fee applications (previously documented).
+- **$20,000** — **Mullins Bros. Ltd.** was separately ordered to "deposit with the Clerk of Court, within 10 days of this Order, the sum of $20,000 for costs of this action," to be applied to receivership fees and expenses upon the receiver's motion. This is a *distinct* obligation from the City's $70,000 reserve, and falls on the developer, not the homeowners or the City. **No confirmation found yet that Mullins actually paid it** — worth checking for a compliance filing or a later reference to this deposit being drawn down.
+- **$100,000** — surety bond the receiver (Jack Harris/Intercept Management Corp.) was required to post "with the Clerk of Court" per R.C. 2735.01 et seq., as a condition of appointment. This is standard receivership practice — Harris's own bonding cost, not billed to homeowners or the City.
+- The same order also directed the City to work out a fee mechanism under **Chapter 920 of the Codified Ordinances of the City of Mount Vernon** to "levy and collect assessments" for dam remediation and improvements — this is likely the actual municipal-code basis for the "Basin 01" utility-fee billing mechanism, worth citing directly if a copy of Chapter 920 is ever pulled.
+
+**First Interim Fee Application** (filed May 28, 2025, covering the period from appointment through Feb./Apr. 2025) — see the fully-detailed table already in this file above — **$34,204.92 combined** ($17,704.50 receiver + $16,500.42 receiver's counsel), drawn against the $70,000 reserve.
+
+### C. Homeowner group's own legal fees (Eastman & Smith, 2023–2026)
+
+- Co-counsel **Kyle D. Tucker**'s billing rate: **$250/hour**; the engagement letter also disclosed a range of **$135–$400/hour** for other attorneys/legal staff who might work the file.
+- **~$850/month** — a Feb. 2024 homeowner email (Janet Boyd) describing what the group was collectively paying for counsel at that point: "we should not be asked to address this issue on our own when we are paying $850 a month for a lawyer."
+- **$800.00** — the Sept. 2026 retainer replenishment request tied to Eastman & Smith's eventual withdrawal ("This month's invoice... has depleted the entire retainer... A retainer payment of $800.00 is due by the end of the day September 25, 2026"). On withdrawal, Chappelear's letter noted an **$800 retainer refund**.
+- **$750** — a substitution fee mentioned in connection with a homeowner's house sale (the "Williams' house-sale saga" record) — the cost of formally substituting a new owner as defendant when a Phase VII/VIII home changes hands. This is a per-transaction cost that recurs any time a lot sells while the case is pending.
+- **$2,000** — a "surprise" legal bill from an earlier, pre-Eastman & Smith law firm (Metz-Bailey-McLoughlin), described in a Feb. 2023 informal-HOA meeting agenda as the cause of a steep 2020–2021 decline in the group's informal HOA account, incurred "as part of early negotiations with the city of Mt. Vernon in [an] attempt to have them take over the dam (unsuccessful)."
+
+### D. One-time vegetation-clearing assessment (unchanged from prior entries)
+
+**$45,000** total, proposed at ~$175/lot spread over ~240 Phase VII/VIII parcels — still pending court approval as of September 2026.
+
+### E. Ongoing maintenance assessment — two different draft models found
+
+1. **Flat-rate model** ("Basin 01 (Pond 1A) Utility Fee Model," Aug. 13, 2026): $36,000/year ($3,000/month) ÷ 245 properties = **$147/property/year ($12.23/month)**, flat across every property regardless of type. 25-year lifecycle total: **$899,195** ($35,968/year average, $2,997/month average, $3,670/property over 25 years). Major cost drivers broken out: routine annual maintenance **~$18,358/year**; a decennial detailed-inspection/minor-repair cycle **~$10,520/occurrence**; a 25-year sediment-dredging/dewatering/excavation project **~$154,748**.
+2. **Two-tier density model** (an earlier or alternate draft, OCR quality poor — worth re-checking against the original PDF if the exact figures matter): a "TWO-LEVEL ASSESSMENT... not a flat rate," splitting properties into "High Density (Condos)" at roughly **$12.08/month** and "Low Density (Single-Family)" at roughly **$17.25/month**, based on estimated impervious surface per unit (condos ~3,825–4,375 sq. ft./unit vs. single-family ~5,867 sq. ft./unit — single-family homes have more impervious surface *per unit* despite condo developments having more impervious surface in total).
+
+**It is not clear from the record which of these two models — flat $12.23/month or tiered $12.08/$17.25 — is the one the receiver will actually put before the court.** Worth flagging as an open question.
+
+### F. Legacy: informal pre-receivership HOA budget (2018–2022, from a "HOA Meeting agenda Feb 19 2023" document)
+
+Before the receiver existed, a small volunteer group ran an informal HOA with its own modest budget, tracked in a Feb. 2023 meeting document:
+- Average spending 2018–2022: **$3,498/year**.
+- Typical 2022 budget: Insurance $1,246.00/yr ($103.83/mo, 41%), Mowing $1,200.00/yr ($100.00/mo, 39%), WRP accounting $550.00/yr ($45.83/mo, 18%), Office supplies $50.00/yr (2%), Bank fees $1.00/yr (0%), Legal $0.00 — **Total $3,047.00/yr ($253.92/mo)**.
+- Separately, an even earlier dues-estimate model assumed $3,500/year in expenses split across 77 lot owners (~$45.45/lot/year), and another alternate estimate suggested $100–200/year "would cover it, if all 77 households" paid.
+
+This budget is an order of magnitude smaller than the current dam-driven assessment models (E, above) and predates the receivership entirely — it covered basic informal-HOA overhead (insurance, mowing, accounting), not dam/pond maintenance. Not clear from the record whether/how this legacy budget gets folded into or replaced by the new HOA's bylaws and dues once organized.
+
+### G. Original 2001–2007 deed-restriction baseline
+
+**$200.00/year** — the "annual maintenance fee" every signer of the 2001–2007 "Deed Restriction & Builder Acknowledgment" forms (R-054, previously recovered) acknowledged in writing at time of purchase, for "the upkeep and maintenance of these grounds," including "all retention ponds." This is the original, contractually-acknowledged baseline figure — worth noting how far the current $147–$3,670+/year models have grown beyond it.
+
+### H. Reserved for trial / unresolved — no dollar figure exists yet
+
+- Indemnity and contribution, injunctive relief, Water Pollution Control Act violations, and breach-of-Declarations claims — the Sept. 2024 ruling reserved all of these for trial with no amount specified and no trial date set.
+- The State's potential fines/costs against the homeowners — unresolved; Alex Varughese's Sept. 2026 email assumes this means "court cost, fines etc." without a number.
+- Costs of any future individual dismissal motions for owners who end up unrepresented — borne individually, amount unknown, would depend on whatever attorney (if any) is hired.
+- Insurance defense costs — State Farm has not agreed to cover the dam claims under homeowners/umbrella policies (the Clarks are the test case); if that dispute resolves against the homeowners, defense costs currently being fronted through the pooled retainer would presumably continue to fall on individual owners rather than a carrier.
+
+### What's excluded from the Costs table
+
+Two dollar figures found are evidentiary, not payment obligations, so they're left out of the site's cost table (though worth keeping here for completeness): the **$5,265.32** check Steve Mullins wrote in 2008 from "The Landings Property Owners Association, Inc." account to a similarly-named-but-different entity, cited in his deposition as evidence he ran the corporation informally; and a **$5,100** HOA asset balance reported as of July 31, 2023, both used as evidence in the corporate-formalities dispute rather than as current cost obligations.
+
 ## Newly recovered: "Kidwell & Cunningham 0001-0013.pdf" (2026-09-22)
 
 This document previously existed only as a stub in the record — a filename and a useless 337-character text snippet (just the Bates stamps "Kidwell & Cunningham 0001" through "0013", nothing else), because it had never actually been recovered as a file. The underlying email (Gmail message `18c608a7fb402178`, "Fwd: Documents from Kidwell & Cunningham," 2023-12-13, ~3MB) was small enough to pull via the RAW-MIME technique (see `STATUS.md`), so it's now recovered in full and saved to `site/docs/R-054.pdf` (added to `email-index/recovered-manifest.json`).
